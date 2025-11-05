@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>טופס פנייה</title>
+    <title>טופס פנייה - הסיפור שלנו בפגייה</title>
     
     <style>
         body {
@@ -63,21 +63,38 @@
 </head>
 <body>
     
+    <div style="max-width: 600px; margin: 0 auto 30px; line-height: 1.6; text-align: center; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);">
+        <h2 style="color: #007bff; border-bottom: none; padding-bottom: 0;">💗 הסיפור שלנו בפגייה</h2>
+        <p style="font-size: 1.1em; font-weight: bold; margin-bottom: 5px;">מיזם של דיקלה ויגאל גולד, מתנדבים בעמותת לה"ב</p>
+        <p style="font-size: 0.9em;">אנחנו אוספים סיפורים אישיים מהורים שעברו לידה מוקדמת, כדי ליצור ספר דיגיטלי שיחזק ויעודד הורים שמגיעים היום לראשונה לפגייה.</p>
+        <p style="font-size: 0.9em;">נשמח מאוד לשתף גם את הסיפור שלכם — במלואו או באופן אנונימי, לפי בחירתכם.</p>
+    </div>
+
     <form method="POST" action="https://formspree.io/f/mwpwgvdd">
-        <h1>טופס פנייה</h1>
+        <h1>שיתוף סיפור</h1>
         
+        <label style="margin-top: 5px; display: block; font-weight: bold; margin-bottom: 10px;">אנחנו, הח"מ, מאשרים לשתף את הסיפור שלנו כחלק מהמיזם "הסיפור שלנו בפגייה":</label>
+        <div style="display: flex; gap: 30px; margin-bottom: 25px;">
+            <label>
+                <input type="radio" name="אופן שיתוף הסיפור" value="בשם מלא" required> בשמנו המלא
+            </label>
+            <label>
+                <input type="radio" name="אופן שיתוף הסיפור" value="אנונימי" required> באופן אנונימי
+            </label>
+        </div>
+
         <label for="full_name">שם מלא:</label>
         <input type="text" id="full_name" name="שם מלא" required>
         
-        <label for="email">כתובת אימייל:</label>
-        <input type="email" id="email" name="_replyto" required>
+        <label for="contact">טלפון / מייל (לצורך יצירת קשר במקרה הצורך):</label>
+        <input type="text" id="contact" name="_replyto" required>
         
-        <label for="q1">תאר את הניסיון המקצועי שלך:</label>
+        <label for="q1">תאר את הניסיון המקצועי שלך (ניתן לשנות לשאלה אחרת):</label>
         <textarea id="q1" name="ניסיון מקצועי" rows="5" required></textarea>
         
-        <label for="q2">מהן הציפיות שלך משיתוף הפעולה העתידי:</label>
+        <label for="q2">מהן הציפיות שלך משיתוף הפעולה העתידי (ניתן לשנות לשאלה אחרת):</label>
         <textarea id="q2" name="ציפיות משיתוף פעולה" rows="5" required></textarea>
-        
+
         <input type="hidden" name="_next" value="https://new-rdei.onrender.com/?status=success" />
 
         <button type="submit">שלח טופס</button>
