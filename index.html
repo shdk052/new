@@ -3,126 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>טופס פנייה - הסיפור שלנו בפגייה</title>
+    <title>הסיפור שלנו בפגייה - שיתוף</title>
     
     <style>
+        :root {
+            /* צבעים מרכזיים */
+            --primary-color: #5B92E5; /* כחול רך */
+            --secondary-color: #B2D8D8; /* תכלת בהיר */
+            --text-color: #333333;
+            --background-color: #F8F8FF; /* לבן אפרפר עדין */
+            --form-bg: #FFFFFF;
+            --success-color: #28a745;
+            --error-color: #dc3545;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f9;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            direction: rtl;
+            text-align: right;
         }
-        h1 {
-            color: #0056b3;
-            border-bottom: 2px solid #ccc;
-            padding-bottom: 10px;
+        
+        /* מיכל ראשי לתוכן */
+        .content-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0;
         }
-        h2 {
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
-            margin-top: 30px;
-            color: #007bff;
-        }
-        form {
-            background: #fff;
+        
+        /* מיכל הטקסט העליון */
+        .header-box {
+            background: var(--form-bg);
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            text-align: center;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .header-box h2 {
+            color: var(--primary-color);
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .header-box p {
+            margin-bottom: 15px;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+        
+        /* עיצוב הטופס */
+        form {
+            background: var(--form-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             margin: 0 auto;
         }
-        label {
-            display: block;
-            margin-bottom: 5px;
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 1.6em;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.2em;
+            color: var(--text-color);
+            border-bottom: 1px dashed var(--secondary-color);
+            padding-bottom: 5px;
+            margin-top: 35px;
+            margin-bottom: 15px;
             font-weight: bold;
         }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.95em;
+            color: var(--text-color);
+        }
+        
         input[type="text"],
         input[type="email"],
         textarea {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
             box-sizing: border-box; 
             resize: vertical;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            font-size: 1em;
         }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 5px rgba(91, 146, 229, 0.5);
+            outline: none;
+        }
+
+        /* כפתורי רדיו */
+        .radio-options {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .radio-options label {
+            font-weight: normal;
+        }
+        
         button[type="submit"] {
-            background-color: #007bff;
+            background-color: var(--primary-color);
             color: white;
-            padding: 12px 20px;
+            padding: 15px 30px;
             border: none;
-            border-radius: 4px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
+            font-size: 1.1em;
+            font-weight: bold;
+            width: 100%;
+            transition: background-color 0.3s, transform 0.2s;
         }
+        
         button[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: #4A7FD4; 
+            transform: translateY(-2px);
         }
+        
         #message-container {
             max-width: 600px;
             margin: 20px auto;
             text-align: center;
         }
+
+        #message-container p {
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        /* הודעת הצלחה/שגיאה */
+        #message-container p[style*="green"] {
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+            background-color: #e6ffe6;
+        }
+        
+        #message-container p[style*="red"] {
+            color: var(--error-color);
+            border: 1px solid var(--error-color);
+            background-color: #ffe6e6;
+        }
+
+        /* *** רספונסיביות - התאמה לטלפונים *** */
+        @media (max-width: 650px) {
+            body {
+                padding: 10px;
+            }
+            form, .header-box {
+                padding: 20px 15px;
+                margin-bottom: 20px;
+                border-radius: 10px;
+            }
+            h1 {
+                font-size: 1.4em;
+            }
+            .radio-options {
+                flex-direction: column;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+            button[type="submit"] {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+        }
     </style>
 </head>
 <body>
     
-    <div style="max-width: 600px; margin: 0 auto 30px; line-height: 1.6; text-align: center; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);">
-        <h2 style="color: #007bff; border-bottom: none; padding-bottom: 0;">💗 הסיפור שלנו בפגייה</h2>
-        <p style="font-size: 1.1em; font-weight: bold; margin-bottom: 5px;">מיזם של דיקלה ויגאל גולד, מתנדבים בעמותת לה"ב</p>
-        <p style="font-size: 0.9em;">אנחנו אוספים סיפורים אישיים מהורים שעברו לידה מוקדמת, כדי ליצור ספר דיגיטלי שיחזק ויעודד הורים שמגיעים היום לראשונה לפגייה.</p>
-        <p style="font-size: 0.9em;">נשמח מאוד לשתף גם את הסיפור שלכם — במלואו או באופן אנונימי, לפי בחירתכם.</p>
-    </div>
+    <div class="content-container">
 
-    <form method="POST" action="https://formspree.io/f/mwpwgvdd">
-        <h1>שיתוף סיפור</h1>
-        
-        <label style="margin-top: 5px; display: block; font-weight: bold; margin-bottom: 10px;">אנחנו, הח"מ, מאשרים לשתף את הסיפור שלנו כחלק מהמיזם "הסיפור שלנו בפגייה":</label>
-        <div style="display: flex; gap: 30px; margin-bottom: 25px;">
-            <label>
-                <input type="radio" name="אופן שיתוף הסיפור" value="בשם מלא" required> בשמנו המלא
-            </label>
-            <label>
-                <input type="radio" name="אופן שיתוף הסיפור" value="אנונימי" required> באופן אנונימי
-            </label>
+        <div class="header-box">
+            <h2>💗 הסיפור שלנו בפגייה</h2>
+            <p style="font-size: 1.1em; font-weight: bold; margin-bottom: 5px;">מיזם של דיקלה ויגאל גולד, מתנדבים בעמותת לה"ב</p>
+            <p>אנחנו אוספים סיפורים אישיים מהורים שעברו לידה מוקדמת, כדי ליצור ספר דיגיטלי שיחזק ויעודד הורים שמגיעים היום לראשונה לפגייה. נשמח מאוד לשתף גם את הסיפור שלכם — במלואו או באופן אנונימי, לפי בחירתכם.</p>
         </div>
 
-        <label for="full_name">שם מלא:</label>
-        <input type="text" id="full_name" name="שם מלא" required>
+        <form method="POST" action="https://formspree.io/f/mwpwgvdd">
+            <h1>שיתוף סיפור</h1>
+            
+            <label style="margin-top: 5px; display: block; font-weight: bold; margin-bottom: 10px;">אנחנו, הח"מ, מאשרים לשתף את הסיפור שלנו כחלק מהמיזם "הסיפור שלנו בפגייה":</label>
+            <div class="radio-options">
+                <label>
+                    <input type="radio" name="אופן שיתוף הסיפור" value="בשם מלא" required> בשמנו המלא
+                </label>
+                <label>
+                    <input type="radio" name="אופן שיתוף הסיפור" value="אנונימי" required> באופן אנונימי
+                </label>
+            </div>
+
+            <label for="full_name">שם מלא:</label>
+            <input type="text" id="full_name" name="שם מלא" required>
+            
+            <label for="contact">טלפון / מייל (לצורך יצירת קשר במקרה הצורך):</label>
+            <input type="text" id="contact" name="_replyto" required>
+            
+            <h2>🎵 שיר מלווה</h2>
+
+            <label for="song_title">שיר שליווה אתכם בתקופת האשפוז בפגייה:</label>
+            <input type="text" id="song_title" name="שיר מלווה" required>
+
+            <label for="song_reason">למה בחרתם דווקא בשיר הזה?</label>
+            <textarea id="song_reason" name="סיבת בחירת השיר" rows="3" required></textarea>
+
+            <h2>👶 סיפור הלידה שלכם</h2>
+
+            <label for="early_realization">מתי הבנתם שתלדו מוקדם?</label>
+            <textarea id="early_realization" name="הבנה על לידה מוקדמת" rows="4" required></textarea>
+            
+            <label for="birth_week">באיזה שבוע ילדתם?</label>
+            <input type="text" id="birth_week" name="שבוע לידה" required>
+            
+            <label for="postpartum_realization">מתי קלטת שאת (או אתה) אחרי לידה?</label>
+            <textarea id="postpartum_realization" name="קליטת לידה" rows="4" required></textarea>
+
+            <label for="first_meeting">איך הייתה החוויה להיפגש עם התינוק באינקובטור בפעם הראשונה? מה הרגשתם? מה חשבתם?</label>
+            <textarea id="first_meeting" name="מפגש ראשון באינקובטור" rows="6" required></textarea>
+            
+            <input type="hidden" name="_next" value="https://new-rdei.onrender.com/?status=success" />
+
+            <button type="submit">שלח סיפור</button>
+        </form>
         
-        <label for="contact">טלפון / מייל (לצורך יצירת קשר במקרה הצורך):</label>
-        <input type="text" id="contact" name="_replyto" required>
-        
-        <h2>🎵 שיר מלווה</h2>
-
-        <label for="song_title">שיר שליווה אתכם בתקופת האשפוז בפגייה:</label>
-        <input type="text" id="song_title" name="שיר מלווה" required>
-
-        <label for="song_reason">למה בחרתם דווקא בשיר הזה?</label>
-        <textarea id="song_reason" name="סיבת בחירת השיר" rows="3" required></textarea>
-
-        <h2>👶 סיפור הלידה שלכם</h2>
-
-        <label for="early_realization">מתי הבנתם שתלדו מוקדם?</label>
-        <textarea id="early_realization" name="הבנה על לידה מוקדמת" rows="4" required></textarea>
-        
-        <label for="birth_week">באיזה שבוע ילדתם?</label>
-        <input type="text" id="birth_week" name="שבוע לידה" required>
-        
-        <label for="postpartum_realization">מתי קלטת שאת (או אתה) אחרי לידה?</label>
-        <textarea id="postpartum_realization" name="קליטת לידה" rows="4" required></textarea>
-
-        <label for="first_meeting">איך הייתה החוויה להיפגש עם התינוק באינקובטור בפעם הראשונה? מה הרגשתם? מה חשבתם?</label>
-        <textarea id="first_meeting" name="מפגש ראשון באינקובטור" rows="6" required></textarea>
-        
-        <input type="hidden" name="_next" value="https://new-rdei.onrender.com/?status=success" />
-
-        <button type="submit">שלח סיפור</button>
-    </form>
-    
-    <div id="message-container">
+        <div id="message-container">
+        </div>
     </div>
 
     <script>
