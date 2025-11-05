@@ -240,11 +240,12 @@
             <p>אנחנו אוספים סיפורים אישיים מהורים שעברו לידה מוקדמת, כדי ליצור ספר דיגיטלי שיחזק ויעודד הורים שמגיעים היום לראשונה לפגייה. נשמח מאוד לשתף גם את הסיפור שלכם — במלואו או באופן אנונימי, לפי בחירתכם.</p>
         </div>
 
-        <form method="POST" action="https://formspree.io/f/mwpwgvdd">
+        <form method="POST" action="https://formspree.io/f/mwpwgvdd" id="submission-form">
             <h1>שיתוף סיפור</h1>
             
             <input type="hidden" name="_clear" value="subject" />
-            <input type="hidden" name="_subject" value="סיפור חדש ממיזם הפגייה - {{ שם מלא }}" />
+            <input type="hidden" name="_subject" value="סיפור חדש ממיזם הפגייה - {{ שם מלא }} | ID: {{ ייחודיות_שליחה }}" />
+            <input type="hidden" id="unique_id" name="ייחודיות_שליחה" value=""> 
 
             <label style="margin-top: 5px; display: block; font-weight: bold; margin-bottom: 10px;">אנחנו, הח"מ, מאשרים לשתף את הסיפור שלנו כחלק מהמיזם "הסיפור שלנו בפגייה":</label>
             <div class="radio-options">
@@ -319,6 +320,25 @@
     </div>
 
     <script>
+        // *** לוגיקת ה-Timestamp ***
+        const uniqueIdInput = document.getElementById('unique_id');
+        const form = document.getElementById('submission-form');
+        
+        // פונקציה שמייצרת ID ייחודי (חותמת זמן במילישניות)
+        function generateUniqueId() {
+            // Date.now() מחזיר מספר ייחודי (במילישניות) בכל רגע נתון
+            return Date.now();
+        }
+
+        // ממלא את השדה הנסתר ברגע טעינת הדף
+        uniqueIdInput.value = generateUniqueId();
+        
+        // מוודא שה-ID מתעדכן רגע לפני השליחה (למקרה שהמשתמש השהה את הדף)
+        form.addEventListener('submit', function() {
+            uniqueIdInput.value = generateUniqueId();
+        });
+
+        // *** לוגיקת הודעת הצלחה/שגיאה ***
         const urlParams = new URLSearchParams(window.location.search);
         const status = urlParams.get('status');
         const messageContainer = document.getElementById('message-container');
