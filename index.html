@@ -17,6 +17,12 @@
             border-bottom: 2px solid #ccc;
             padding-bottom: 10px;
         }
+        h2 {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            color: #007bff;
+        }
         form {
             background: #fff;
             padding: 30px;
@@ -89,15 +95,31 @@
         <label for="contact">טלפון / מייל (לצורך יצירת קשר במקרה הצורך):</label>
         <input type="text" id="contact" name="_replyto" required>
         
-        <label for="q1">תאר את הניסיון המקצועי שלך (ניתן לשנות לשאלה אחרת):</label>
-        <textarea id="q1" name="ניסיון מקצועי" rows="5" required></textarea>
-        
-        <label for="q2">מהן הציפיות שלך משיתוף הפעולה העתידי (ניתן לשנות לשאלה אחרת):</label>
-        <textarea id="q2" name="ציפיות משיתוף פעולה" rows="5" required></textarea>
+        <h2>🎵 שיר מלווה</h2>
 
+        <label for="song_title">שיר שליווה אתכם בתקופת האשפוז בפגייה:</label>
+        <input type="text" id="song_title" name="שיר מלווה" required>
+
+        <label for="song_reason">למה בחרתם דווקא בשיר הזה?</label>
+        <textarea id="song_reason" name="סיבת בחירת השיר" rows="3" required></textarea>
+
+        <h2>👶 סיפור הלידה שלכם</h2>
+
+        <label for="early_realization">מתי הבנתם שתלדו מוקדם?</label>
+        <textarea id="early_realization" name="הבנה על לידה מוקדמת" rows="4" required></textarea>
+        
+        <label for="birth_week">באיזה שבוע ילדתם?</label>
+        <input type="text" id="birth_week" name="שבוע לידה" required>
+        
+        <label for="postpartum_realization">מתי קלטת שאת (או אתה) אחרי לידה?</label>
+        <textarea id="postpartum_realization" name="קליטת לידה" rows="4" required></textarea>
+
+        <label for="first_meeting">איך הייתה החוויה להיפגש עם התינוק באינקובטור בפעם הראשונה? מה הרגשתם? מה חשבתם?</label>
+        <textarea id="first_meeting" name="מפגש ראשון באינקובטור" rows="6" required></textarea>
+        
         <input type="hidden" name="_next" value="https://new-rdei.onrender.com/?status=success" />
 
-        <button type="submit">שלח טופס</button>
+        <button type="submit">שלח סיפור</button>
     </form>
     
     <div id="message-container">
