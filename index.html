@@ -31,6 +31,7 @@
             font-weight: bold;
         }
         input[type="text"],
+        input[type="email"],
         textarea {
             width: 100%;
             padding: 10px;
@@ -68,6 +69,9 @@
         <label for="full_name">שם מלא:</label>
         <input type="text" id="full_name" name="שם מלא" required>
         
+        <label for="email">כתובת אימייל:</label>
+        <input type="email" id="email" name="_replyto" required>
+        
         <label for="q1">תאר את הניסיון המקצועי שלך:</label>
         <textarea id="q1" name="ניסיון מקצועי" rows="5" required></textarea>
         
@@ -75,8 +79,6 @@
         <textarea id="q2" name="ציפיות משיתוף פעולה" rows="5" required></textarea>
         
         <input type="hidden" name="_next" value="https://new-rdei.onrender.com/?status=success" />
-        
-        <input type="hidden" name="_replyto" value="אל תענה אוטומטית" />
 
         <button type="submit">שלח טופס</button>
     </form>
@@ -91,6 +93,7 @@
 
         if (status === 'success') {
             messageContainer.innerHTML = '<p style="color: green; font-weight: bold; padding: 15px; border: 1px solid green; background-color: #e6ffe6;">הטופס נשלח בהצלחה! תודה רבה.</p>';
+            // מנקה את ה-URL
             setTimeout(() => {
                 window.history.replaceState(null, null, window.location.pathname);
             }, 500);
