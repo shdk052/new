@@ -36,11 +36,12 @@
             margin: 0 auto;
         }
         
+        /* מיכל הטקסט העליון - קופסה מורמת */
         .header-box {
             background: var(--form-bg);
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08); /* צללית עדינה יותר */
             margin-bottom: 30px;
             text-align: center;
         }
@@ -62,6 +63,7 @@
              color: var(--text-color);
         }
         
+        /* עיצוב הטופס הראשי */
         form {
             background: var(--form-bg);
             padding: 40px;
@@ -122,6 +124,7 @@
             background-color: #FFF;
         }
 
+        /* כפתורי רדיו */
         .radio-options {
             display: flex;
             gap: 30px;
@@ -143,7 +146,7 @@
         }
         
         button[type="submit"] {
-            background-color: var(--accent-color);
+            background-color: var(--accent-color); /* שימוש בצבע החם להדגשת הלחצן */
             color: white;
             padding: 16px 30px;
             border: none;
@@ -163,6 +166,7 @@
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
         }
         
+        /* הודעות מערכת */
         #message-container {
             max-width: 750px;
             margin: 20px auto;
@@ -189,6 +193,7 @@
             background-color: #f8d7da;
         }
 
+        /* *** רספונסיביות משופרת - התאמה לטלפונים *** */
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -238,6 +243,7 @@
         <form method="POST" action="https://formspree.io/f/mwpwgvdd">
             <h1>שיתוף סיפור</h1>
             
+            <input type="hidden" name="_clear" value="subject" />
             <input type="hidden" name="_subject" value="סיפור חדש ממיזם הפגייה - {{ שם מלא }}" />
 
             <label style="margin-top: 5px; display: block; font-weight: bold; margin-bottom: 10px;">אנחנו, הח"מ, מאשרים לשתף את הסיפור שלנו כחלק מהמיזם "הסיפור שלנו בפגייה":</label>
