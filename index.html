@@ -7,89 +7,95 @@
     
     <style>
         :root {
-            /* צבעים מרכזיים */
-            --primary-color: #5B92E5; /* כחול רך */
-            --secondary-color: #B2D8D8; /* תכלת בהיר */
-            --text-color: #333333;
-            --background-color: #F8F8FF; /* לבן אפרפר עדין */
+            /* צבעים מרכזיים - אסתטיקה רכה וחמימה */
+            --primary-color: #5D8E8F; /* ירוק-כחול עמוק (Teal) */
+            --secondary-color: #A3C9C9; /* תכלת רך */
+            --accent-color: #F8B490; /* גוון אפרסק/חם להדגשה */
+            --text-color: #383838;
+            --light-text-color: #6C757D;
+            --background-color: #F7F7F7; /* רקע אפור-לבן רך */
             --form-bg: #FFFFFF;
-            --success-color: #28a745;
-            --error-color: #dc3545;
+            --border-color: #E0E0E0;
+            --focus-shadow: 0 0 0 3px rgba(93, 142, 143, 0.25); /* צללית פוקוס רכה */
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 20px 10px; /* קצת יותר קטן בצדדים כדי לאפשר רווח במובייל */
             background-color: var(--background-color);
             color: var(--text-color);
             direction: rtl;
             text-align: right;
+            line-height: 1.6;
+            min-height: 100vh;
         }
         
-        /* מיכל ראשי לתוכן */
         .content-container {
-            max-width: 700px;
+            max-width: 750px;
             margin: 0 auto;
-            padding: 0;
         }
         
-        /* מיכל הטקסט העליון */
+        /* מיכל הטקסט העליון - קופסה מורמת */
         .header-box {
             background: var(--form-bg);
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08); /* צללית עדינה יותר */
             margin-bottom: 30px;
             text-align: center;
-            border-top: 5px solid var(--primary-color);
         }
 
         .header-box h2 {
             color: var(--primary-color);
-            font-size: 1.8em;
+            font-size: 2em;
             margin-top: 0;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: 700;
         }
         .header-box p {
-            margin-bottom: 15px;
-            font-size: 1em;
-            line-height: 1.5;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            color: var(--light-text-color);
+        }
+        .header-box p:first-of-type {
+             font-weight: bold;
+             color: var(--text-color);
         }
         
-        /* עיצוב הטופס */
+        /* עיצוב הטופס הראשי */
         form {
             background: var(--form-bg);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin: 0 auto;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
         }
 
         h1 {
             color: var(--primary-color);
-            font-size: 1.6em;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 10px;
-            margin-bottom: 30px;
+            font-size: 1.8em;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 15px;
+            margin-bottom: 35px;
             text-align: center;
+            font-weight: 600;
         }
 
         h2 {
-            font-size: 1.2em;
-            color: var(--text-color);
-            border-bottom: 1px dashed var(--secondary-color);
-            padding-bottom: 5px;
-            margin-top: 35px;
-            margin-bottom: 15px;
-            font-weight: bold;
+            font-size: 1.3em;
+            color: var(--primary-color);
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 8px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
         
         label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            font-size: 0.95em;
+            font-size: 1em;
             color: var(--text-color);
         }
         
@@ -97,99 +103,129 @@
         input[type="email"],
         textarea {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 25px;
-            border: 1px solid #cccccc;
+            padding: 14px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             box-sizing: border-box; 
             resize: vertical;
             transition: border-color 0.3s, box-shadow 0.3s;
             font-size: 1em;
+            color: var(--text-color);
+            background-color: #FAFAFA;
         }
 
         input[type="text"]:focus,
         input[type="email"]:focus,
         textarea:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 5px rgba(91, 146, 229, 0.5);
+            box-shadow: var(--focus-shadow);
             outline: none;
+            background-color: #FFF;
         }
 
         /* כפתורי רדיו */
         .radio-options {
             display: flex;
-            gap: 20px;
+            gap: 30px;
             margin-bottom: 30px;
+            padding: 10px;
+            border: 1px dashed var(--secondary-color);
+            border-radius: 8px;
+            background-color: #FDFDFD;
         }
         .radio-options label {
             font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        .radio-options input[type="radio"] {
+            transform: scale(1.2);
         }
         
         button[type="submit"] {
-            background-color: var(--primary-color);
+            background-color: var(--accent-color); /* שימוש בצבע החם להדגשת הלחצן */
             color: white;
-            padding: 15px 30px;
+            padding: 16px 30px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 1.1em;
+            font-size: 1.15em;
             font-weight: bold;
             width: 100%;
-            transition: background-color 0.3s, transform 0.2s;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
         button[type="submit"]:hover {
-            background-color: #4A7FD4; 
-            transform: translateY(-2px);
+            background-color: #E89E78; 
+            transform: translateY(-1px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
         }
         
+        /* הודעות מערכת */
         #message-container {
-            max-width: 600px;
+            max-width: 750px;
             margin: 20px auto;
             text-align: center;
         }
 
         #message-container p {
-            padding: 15px;
-            border-radius: 8px;
+            padding: 20px;
+            border-radius: 10px;
             font-weight: bold;
             font-size: 1.1em;
+            margin-top: 20px;
         }
 
-        /* הודעת הצלחה/שגיאה */
         #message-container p[style*="green"] {
-            color: var(--success-color);
-            border: 1px solid var(--success-color);
-            background-color: #e6ffe6;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
         }
         
         #message-container p[style*="red"] {
-            color: var(--error-color);
-            border: 1px solid var(--error-color);
-            background-color: #ffe6e6;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
         }
 
-        /* *** רספונסיביות - התאמה לטלפונים *** */
-        @media (max-width: 650px) {
+        /* *** רספונסיביות משופרת - התאמה לטלפונים *** */
+        @media (max-width: 768px) {
             body {
                 padding: 10px;
             }
-            form, .header-box {
-                padding: 20px 15px;
+            .content-container {
+                max-width: 100%;
+            }
+            form {
+                padding: 20px;
+            }
+            .header-box {
+                padding: 20px;
                 margin-bottom: 20px;
-                border-radius: 10px;
             }
             h1 {
-                font-size: 1.4em;
+                font-size: 1.5em;
+                margin-bottom: 20px;
+            }
+            h2 {
+                font-size: 1.2em;
             }
             .radio-options {
                 flex-direction: column;
-                gap: 10px;
-                margin-bottom: 20px;
+                gap: 15px;
+                margin-bottom: 25px;
             }
             button[type="submit"] {
-                padding: 12px 20px;
-                font-size: 1em;
+                padding: 14px 20px;
+                font-size: 1.1em;
+            }
+            input[type="text"], textarea {
+                margin-bottom: 20px;
             }
         }
     </style>
@@ -200,7 +236,7 @@
 
         <div class="header-box">
             <h2>💗 הסיפור שלנו בפגייה</h2>
-            <p style="font-size: 1.1em; font-weight: bold; margin-bottom: 5px;">מיזם של דיקלה ויגאל גולד, מתנדבים בעמותת לה"ב</p>
+            <p style="font-weight: bold;">מיזם של דיקלה ויגאל גולד, מתנדבים בעמותת לה"ב</p>
             <p>אנחנו אוספים סיפורים אישיים מהורים שעברו לידה מוקדמת, כדי ליצור ספר דיגיטלי שיחזק ויעודד הורים שמגיעים היום לראשונה לפגייה. נשמח מאוד לשתף גם את הסיפור שלכם — במלואו או באופן אנונימי, לפי בחירתכם.</p>
         </div>
 
@@ -260,13 +296,13 @@
         const messageContainer = document.getElementById('message-container');
 
         if (status === 'success') {
-            messageContainer.innerHTML = '<p style="color: green; font-weight: bold; padding: 15px; border: 1px solid green; background-color: #e6ffe6;">הטופס נשלח בהצלחה! תודה רבה.</p>';
+            messageContainer.innerHTML = '<p style="color: green;">הטופס נשלח בהצלחה! תודה רבה.</p>';
             // מנקה את ה-URL
             setTimeout(() => {
                 window.history.replaceState(null, null, window.location.pathname);
             }, 500);
         } else if (status === 'error') {
-            messageContainer.innerHTML = '<p style="color: red; font-weight: bold; padding: 15px; border: 1px solid red; background-color: #ffe6e6;">אירעה שגיאה בשליחת הטופס. אנא ודא שהאימייל שלך מאומת ב-Formspree.</p>';
+            messageContainer.innerHTML = '<p style="color: red;">אירעה שגיאה בשליחת הטופס. אנא ודא שהאימייל שלך מאומת ב-Formspree.</p>';
         }
     </script>
 
