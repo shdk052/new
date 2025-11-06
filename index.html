@@ -4,322 +4,197 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>הסיפור שלנו בפגייה - שיתוף</title>
-    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #1A6B73;
-            --secondary-color: #2B8C96;
-            --accent-color: #4DADB5;
-            --text-color: #1A3A3F;
-            --light-text-color: #3A5A63;
+            /* צבעים מרכזיים - אסתטיקה רכה וחמימה */
+            --primary-color: #5D8E8F; /* ירוק-כחול עמוק (Teal) */
+            --secondary-color: #A3C9C9; /* תכלת רך */
+            --accent-color: #F8B490; /* גוון אפרסק/חם להדגשה */
+            --text-color: #383838;
+            --light-text-color: #6C757D;
+            --background-color: #F7F7F7; /* רקע אפור-לבן רך */
             --form-bg: #FFFFFF;
-            --border-color: #2B8C96;
-            --success-color: #00A878;
-            --error-color: #D63031;
-        }
-
-        * {
-            font-family: 'Varela Round', sans-serif;
-        }
-
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #062D34 0%, #0D4A54 50%, #164959 100%) !important;
-            background-attachment: fixed !important;
-            min-height: 100vh;
+            --border-color: #E0E0E0;
+            --focus-shadow: 0 0 0 3px rgba(93, 142, 143, 0.25); /* צללית פוקוס רכה */
         }
 
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
             padding: 20px 10px;
+            background-color: var(--background-color);
             color: var(--text-color);
             direction: rtl;
             text-align: right;
-            line-height: 1.8;
+            line-height: 1.6;
+            min-height: 100vh;
         }
         
         .content-container {
-            max-width: 800px;
+            max-width: 750px;
             margin: 0 auto;
         }
         
+        /* מיכל הטקסט העליון - קופסה מורמת */
         .header-box {
-            background: linear-gradient(135deg, #1A6B73 0%, #0F4C54 100%);
-            padding: 50px 30px;
-            border-radius: 20px;
-            box-shadow: 0 12px 30px rgba(26, 107, 115, 0.35);
-            margin-bottom: 40px;
+            background: var(--form-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08); /* צללית עדינה יותר */
+            margin-bottom: 30px;
             text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        .header-box > * {
-            position: relative;
-            z-index: 1;
         }
 
         .header-box h2 {
-            font-size: 2.8em;
-            margin: 0 0 15px 0;
-            font-weight: 900;
-            letter-spacing: 2px;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            color: #FFFFFF;
-            filter: drop-shadow(0 2px 8px rgba(77, 173, 181, 0.5));
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 700;
         }
-        
         .header-box p {
-            margin: 10px 0;
-            font-size: 1.05em;
-            opacity: 0.95;
-            line-height: 1.7;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            color: var(--light-text-color);
+        }
+        .header-box p:first-of-type {
+             font-weight: bold;
+             color: var(--text-color);
         }
         
+        /* עיצוב הטופס הראשי */
         form {
-            background: linear-gradient(135deg, #1A6B73 0%, #1B5864 50%, #145055 100%);
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-            position: relative;
-            border: 2px solid #4DADB5;
+            background: var(--form-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
         }
 
         h1 {
-            display: none;
+            color: var(--primary-color);
+            font-size: 1.8em;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 15px;
+            margin-bottom: 35px;
+            text-align: center;
+            font-weight: 600;
         }
 
         h2 {
-            font-size: 1.4em;
-            color: #FFFFFF;
-            border-bottom: 3px dashed #4DADB5;
-            padding-bottom: 12px;
-            margin-top: 45px;
-            margin-bottom: 25px;
-            font-weight: 800;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            letter-spacing: 0.5px;
+            font-size: 1.3em;
+            color: var(--primary-color);
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 8px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
         
         label {
             display: block;
-            margin-bottom: 10px;
-            font-weight: 700;
-            font-size: 1.05em;
-            color: #FFFFFF;
-            letter-spacing: 0.5px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 1em;
+            color: var(--text-color);
         }
         
         input[type="text"],
         input[type="email"],
         textarea {
             width: 100%;
-            padding: 16px;
-            margin-bottom: 28px;
-            border: 2px solid #4DADB5;
-            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
             box-sizing: border-box; 
             resize: vertical;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 1.05em;
-            color: #1A3A3F;
-            background-color: rgba(232, 244, 246, 0.85);
-            font-family: 'Varela Round', sans-serif;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            font-size: 1em;
+            color: var(--text-color);
+            background-color: #FAFAFA;
         }
 
         input[type="text"]:focus,
         input[type="email"]:focus,
         textarea:focus {
-            border-color: #FFFFFF;
-            background-color: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 0 0 4px rgba(77, 173, 181, 0.3);
+            border-color: var(--primary-color);
+            box-shadow: var(--focus-shadow);
             outline: none;
-            transform: translateY(-2px);
+            background-color: #FFF;
         }
 
+        /* כפתורי רדיו */
         .radio-options {
             display: flex;
-            gap: 25px;
+            gap: 30px;
             margin-bottom: 30px;
-            padding: 20px;
-            border: 2px dashed var(--secondary-color);
-            border-radius: 15px;
-            background: linear-gradient(135deg, rgba(43, 140, 150, 0.12) 0%, rgba(77, 173, 181, 0.08) 100%);
+            padding: 10px;
+            border: 1px dashed var(--secondary-color);
+            border-radius: 8px;
+            background-color: #FDFDFD;
         }
-
         .radio-options label {
-            font-weight: 600;
+            font-weight: normal;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             cursor: pointer;
-            transition: transform 0.2s;
         }
-
-        .radio-options label:hover {
-            transform: translateX(-5px);
-        }
-
         .radio-options input[type="radio"] {
-            transform: scale(1.3);
-            accent-color: var(--secondary-color);
-            cursor: pointer;
+            transform: scale(1.2);
         }
         
         button[type="submit"] {
-            background: linear-gradient(135deg, #2B8C96 0%, #1A6B73 100%);
+            background-color: var(--accent-color); /* שימוש בצבע החם להדגשת הלחצן */
             color: white;
-            padding: 18px 40px;
+            padding: 16px 30px;
             border: none;
-            border-radius: 15px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 1.2em;
-            font-weight: 700;
+            font-size: 1.15em;
+            font-weight: bold;
             width: 100%;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 20px rgba(26, 107, 115, 0.3);
-            font-family: 'Varela Round', sans-serif;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
         button[type="submit"]:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(26, 107, 115, 0.4);
-        }
-
-        button[type="submit"]:active {
+            background-color: #E89E78; 
             transform: translateY(-1px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
         }
-
+        
+        /* הודעות מערכת */
         #message-container {
-            max-width: 800px;
-            margin: 25px auto;
+            max-width: 750px;
+            margin: 20px auto;
             text-align: center;
         }
 
         #message-container p {
-            padding: 20px 25px;
-            border-radius: 12px;
-            font-weight: 600;
+            padding: 20px;
+            border-radius: 10px;
+            font-weight: bold;
             font-size: 1.1em;
-            margin: 0;
-            animation: slideDown 0.4s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            margin-top: 20px;
         }
 
         #message-container p[style*="green"] {
-            color: #00663D;
-            border: 2px solid var(--success-color);
-            background: linear-gradient(135deg, rgba(0, 184, 148, 0.1) 0%, rgba(0, 184, 148, 0.05) 100%);
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
         }
         
         #message-container p[style*="red"] {
-            color: #8B0000;
-            border: 2px solid var(--error-color);
-            background: linear-gradient(135deg, rgba(214, 48, 49, 0.1) 0%, rgba(214, 48, 49, 0.05) 100%);
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
         }
 
+        /* *** רספונסיביות משופרת - התאמה לטלפונים *** */
         @media (max-width: 768px) {
-            body {
-                padding: 15px;
-                background-attachment: fixed;
-            }
-            .content-container {
-                max-width: 100%;
-            }
-            form {
-                padding: 25px;
-                border-radius: 18px;
-            }
-            .header-box {
-                padding: 35px 20px;
-                margin-bottom: 30px;
-                border-radius: 18px;
-            }
-            .header-box h2 {
-                font-size: 2em;
-                margin-bottom: 15px;
-            }
-            .header-box p {
-                font-size: 1em;
-                margin: 10px 0;
-            }
-            h2 {
-                font-size: 1.2em;
-                margin-top: 35px;
-                margin-bottom: 20px;
-            }
-            label {
-                font-size: 0.98em;
-                margin-bottom: 10px;
-            }
-            input[type="text"],
-            input[type="email"],
-            textarea {
-                padding: 14px;
-                margin-bottom: 22px;
-                font-size: 1.02em;
-                border-radius: 11px;
-            }
-            .radio-options {
-                flex-direction: column;
-                gap: 15px;
-                padding: 18px;
-                margin-bottom: 28px;
-                border-radius: 12px;
-            }
-            .radio-options label {
-                font-size: 0.98em;
-            }
-            button[type="submit"] {
-                padding: 16px 25px;
-                font-size: 1.08em;
-                border-radius: 13px;
-                margin-top: 15px;
-            }
-            #message-container {
-                margin: 25px auto;
-            }
-            #message-container p {
-                padding: 20px;
-                font-size: 1em;
-                border-radius: 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
             body {
                 padding: 10px;
             }
@@ -327,110 +202,30 @@
                 max-width: 100%;
             }
             form {
-                padding: 18px;
-                border-radius: 16px;
+                padding: 20px;
             }
             .header-box {
-                padding: 25px 15px;
+                padding: 20px;
                 margin-bottom: 20px;
-                border-radius: 16px;
             }
-            .header-box h2 {
-                font-size: 1.7em;
-                margin-bottom: 12px;
-                letter-spacing: 0.5px;
-            }
-            .header-box p {
-                font-size: 0.92em;
-                line-height: 1.6;
-                margin: 8px 0;
+            h1 {
+                font-size: 1.5em;
+                margin-bottom: 20px;
             }
             h2 {
-                font-size: 1.1em;
-                margin-top: 28px;
-                margin-bottom: 16px;
-                padding-bottom: 10px;
-            }
-            label {
-                font-size: 0.93em;
-                margin-bottom: 8px;
-                font-weight: 700;
-            }
-            input[type="text"],
-            input[type="email"],
-            textarea {
-                padding: 12px;
-                margin-bottom: 18px;
-                font-size: 0.98em;
-                border-radius: 10px;
-                border-width: 2px;
-            }
-            textarea {
-                min-height: 100px;
+                font-size: 1.2em;
             }
             .radio-options {
                 flex-direction: column;
-                gap: 12px;
-                padding: 15px;
-                margin-bottom: 22px;
-                border-radius: 10px;
-            }
-            .radio-options label {
-                font-size: 0.93em;
-                gap: 8px;
+                gap: 15px;
+                margin-bottom: 25px;
             }
             button[type="submit"] {
-                padding: 15px 20px;
-                font-size: 1.04em;
-                border-radius: 12px;
-                margin-top: 12px;
-                font-weight: 700;
+                padding: 14px 20px;
+                font-size: 1.1em;
             }
-            #message-container {
-                margin: 20px -10px;
-                padding: 0 10px;
-            }
-            #message-container p {
-                padding: 16px 12px;
-                font-size: 0.95em;
-                border-radius: 10px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            body {
-                padding: 8px;
-            }
-            form {
-                padding: 15px;
-            }
-            .header-box {
-                padding: 20px 12px;
-                margin-bottom: 18px;
-            }
-            .header-box h2 {
-                font-size: 1.5em;
-            }
-            .header-box p {
-                font-size: 0.88em;
-            }
-            h2 {
-                font-size: 1em;
-                margin-top: 24px;
-            }
-            label {
-                font-size: 0.9em;
-            }
-            input[type="text"],
-            input[type="email"],
-            textarea {
-                padding: 11px;
-                margin-bottom: 16px;
-                font-size: 0.95em;
-            }
-            button[type="submit"] {
-                padding: 13px 18px;
-                font-size: 1em;
+            input[type="text"], textarea {
+                margin-bottom: 20px;
             }
         }
     </style>
@@ -441,7 +236,7 @@
 
         <div class="header-box">
             <h2>💗 הסיפור שלנו בפגייה</h2>
-            <p style="font-weight: bold; font-size: 1.15em;">מיזם של דיקלה ויגאל גולד, מתנדבים בעמותת לה"ב</p>
+            <p style="font-weight: bold;">מיזם של דיקלה ויגאל גולד, מתנדבים בעמותת לה"ב</p>
             <p>אנחנו אוספים סיפורים אישיים מהורים שעברו לידה מוקדמת, כדי ליצור ספר דיגיטלי שיחזק ויעודד הורים שמגיעים היום לראשונה לפגייה. נשמח מאוד לשתף גם את הסיפור שלכם — במלואו או באופן אנונימי, לפי בחירתכם.</p>
         </div>
 
@@ -452,7 +247,7 @@
             <input type="hidden" name="_subject" value="סיפור חדש ממיזם הפגייה - {{ שם מלא }} | ID: {{ ייחודיות_שליחה }}" />
             <input type="hidden" id="unique_id" name="ייחודיות_שליחה" value=""> 
 
-            <label style="margin-top: 5px; display: block; font-weight: bold; margin-bottom: 15px;">אנחנו, הח"מ, מאשרים לשתף את הסיפור שלנו כחלק מהמיזם "הסיפור שלנו בפגייה":</label>
+            <label style="margin-top: 5px; display: block; font-weight: bold; margin-bottom: 10px;">אנחנו, הח"מ, מאשרים לשתף את הסיפור שלנו כחלק מהמיזם "הסיפור שלנו בפגייה":</label>
             <div class="radio-options">
                 <label>
                     <input type="radio" name="אופן שיתוף הסיפור" value="בשם מלא" required> בשמנו המלא
@@ -520,29 +315,37 @@
             <button type="submit">שלח סיפור</button>
         </form>
         
-        <div id="message-container"></div>
+        <div id="message-container">
+        </div>
     </div>
 
     <script>
+        // *** לוגיקת ה-Timestamp ***
         const uniqueIdInput = document.getElementById('unique_id');
         const form = document.getElementById('submission-form');
         
+        // פונקציה שמייצרת ID ייחודי (חותמת זמן במילישניות)
         function generateUniqueId() {
+            // Date.now() מחזיר מספר ייחודי (במילישניות) בכל רגע נתון
             return Date.now();
         }
 
+        // ממלא את השדה הנסתר ברגע טעינת הדף
         uniqueIdInput.value = generateUniqueId();
         
+        // מוודא שה-ID מתעדכן רגע לפני השליחה (למקרה שהמשתמש השהה את הדף)
         form.addEventListener('submit', function() {
             uniqueIdInput.value = generateUniqueId();
         });
 
+        // *** לוגיקת הודעת הצלחה/שגיאה ***
         const urlParams = new URLSearchParams(window.location.search);
         const status = urlParams.get('status');
         const messageContainer = document.getElementById('message-container');
 
         if (status === 'success') {
-            messageContainer.innerHTML = '<p style="color: green;">הטופס נשלח בהצלחה! תודה רבה על שיתוף הסיפור המשמעותי שלכם.</p>';
+            messageContainer.innerHTML = '<p style="color: green;">הטופס נשלח בהצלחה! תודה רבה.</p>';
+            // מנקה את ה-URL
             setTimeout(() => {
                 window.history.replaceState(null, null, window.location.pathname);
             }, 500);
