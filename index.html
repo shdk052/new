@@ -72,10 +72,10 @@
             100% { transform: translateX(100%); }
         }
         
-        /* *** סגנון הלוגו (מותאם ללוגו הוורוד על רקע בהיר) *** */
+        /* *** סגנון הלוגו *** */
         .logo {
             text-align: center;
-            margin-bottom: 25px; /* מרווח מתחת ללוגו לפני הכותרת */
+            margin-bottom: 25px; 
         }
 
         .logo img {
@@ -83,19 +83,18 @@
             width: 60%; 
             height: auto;
             display: inline-block;
-            /* רקע לבן כדי שהלוגו הוורוד ייראה ברור */
             background-color: white; 
             padding: 8px 15px;
             border-radius: 6px;
         }
         /* *** סוף סגנון הלוגו *** */
 
-        /* כותרת ראשית (תוקן: גודל מספיק למניעת חיתוך) */
+        /* כותרת ראשית */
         .header h1 {
             font-size: 2.1em;
             font-weight: 900;
             margin-bottom: 25px; 
-            color: #A0E4F0; /* צבע מודגש */
+            color: #A0E4F0; 
             text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             letter-spacing: 1px;
             text-align: center;
@@ -107,7 +106,7 @@
             margin-bottom: 12px;
         }
         
-        /* עיצוב מטרות עם V - צבע כותרת שונה ללבן (#FFF) */
+        /* עיצוב מטרות - צבע לבן */
         .header .goal-title {
             font-size: 1.05em;
             font-weight: 800;
@@ -123,7 +122,6 @@
             margin-top: 10px;
             display: flex;
             align-items: flex-start;
-            /* שומר על ה-bold שנוצר מ-strong */
             font-weight: normal; 
         }
         
@@ -134,7 +132,7 @@
             flex-shrink: 0;
         }
         
-        /* עיצוב קריאה לפעולה (מידע ליצירת קשר) */
+        /* עיצוב קריאה לפעולה */
         .header .contact-info {
             margin-top: 25px;
             padding-top: 15px;
@@ -162,7 +160,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* עיצוב פנימי של הטופס (שדות וליבלים) */
+        /* עיצוב פנימי של הטופס */
         form {
             width: 100%;
         }
@@ -304,7 +302,7 @@
             color: #B0E8D4;
         }
 
-        /* מדיה קווריות - התאמות קטנות למסכים קטנים מאוד */
+        /* מדיה קווריות */
         @media (max-width: 400px) {
             .container {
                 padding: 10px;
@@ -319,7 +317,7 @@
                 font-size: 0.9em;
             }
             .logo img {
-                max-width: 150px; /* קטן יותר במסכים צרים מאוד */
+                max-width: 150px; 
             }
         }
     </style>
@@ -371,10 +369,11 @@
         <div class="form-container">
             <div id="message"></div> 
             
-            <form id="form" method="POST" action="https://formspree.io/f/mwpwgvdd">
-                <input type="hidden" name="_clear" value="subject">
-                <input type="hidden" name="_subject" value="סיפור חדש ממיזם הפגייה - {{ שם מלא }} | ID: {{ ייחודיות_שליחה }}">
-                <input type="hidden" id="unique_id" name="ייחודיות_שליחה" value="">
+            <form id="form" name="premie-book-form" method="POST" action="/?status=success" data-netlify="true" data-netlify-honeypot="bot-field">
+                
+                <input type="hidden" name="form-name" value="premie-book-form" />
+                
+                <input type="hidden" name="bot-field" />
 
                 <div class="section">
                     <div class="section-title">🗳️ אופן שיתוף הסיפור:</div>
@@ -470,7 +469,6 @@
                     </div>
                 </div>
 
-                <input type="hidden" name="_next" value="https://new-rdei.onrender.com/?status=success">
                 <button type="submit">שלח את הסיפור 📤</button>
             </form>
         </div>
@@ -480,20 +478,7 @@
         const form = document.getElementById('form');
         const messageDiv = document.getElementById('message');
         
-        // פונקציה שמייצרת ID ייחודי
-        function generateUniqueId() {
-            return Date.now();
-        }
-
-        // ממלא את השדה הנסתר ברגע טעינת הדף
-        document.getElementById('unique_id').value = generateUniqueId();
-        
-        // מוודא שה-ID מתעדכן רגע לפני השליחה כדי למנוע כפילויות
-        form.addEventListener('submit', () => {
-            document.getElementById('unique_id').value = generateUniqueId();
-        });
-
-        // טיפול בהודעת סטטוס לאחר שליחה (לדף אליו מפנה Formspree)
+        // Netlify Forms מפנה חזרה לאותו דף עם פרמטר success, כך שקוד ה-JS הזה יציג את הודעת ההצלחה.
         const params = new URLSearchParams(window.location.search);
         const status = params.get('status');
 
@@ -503,6 +488,7 @@
             // מנקה את ה-URL לניקיון
             setTimeout(() => window.history.replaceState(null, null, location.pathname), 500);
         } else if (status === 'error') {
+            // Netlify יכול לשלוח שגיאה
             messageDiv.className = 'message error';
             messageDiv.textContent = '❌ שגיאה בשליחה. אנא נסו שנית או צרו קשר ישירות.';
         }
