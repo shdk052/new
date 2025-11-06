@@ -21,7 +21,7 @@
             background: linear-gradient(180deg, #0A3A42 0%, #0D5A68 50%, #116B78 100%);
             background-attachment: fixed;
             font-family: 'Varela Round', sans-serif;
-            color: #FFF;
+            color: #FFF; /* כל הטקסט באתר יהיה לבן */
             direction: rtl;
             overflow-x: hidden;
         }
@@ -94,7 +94,7 @@
             font-size: 2.1em;
             font-weight: 900;
             margin-bottom: 25px; 
-            color: #A0E4F0; 
+            color: #A0E4F0; /* נשמר לצבע כותרת מיוחד */
             text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             letter-spacing: 1px;
             text-align: center;
@@ -102,7 +102,7 @@
         
         .header p {
             font-size: 0.95em;
-            color: rgba(255, 255, 255, 0.95);
+            color: rgba(255, 255, 255, 0.95); /* נשמר, כדי לאפשר שקיפות קלה אם תרצה */
             margin-bottom: 12px;
         }
         
@@ -110,7 +110,7 @@
         .header .goal-title {
             font-size: 1.05em;
             font-weight: 800;
-            color: #FFF; /* צבע לבן */
+            color: #FFF; /* נשמר לצבע לבן מובהק */
             margin-top: 20px;
             margin-bottom: 5px;
             border-right: 4px solid #A0E4F0; 
@@ -193,7 +193,7 @@
             display: block;
             font-size: 0.9em;
             font-weight: 700;
-            color: #FFF;
+            color: #FFF; /* כל התוויות (Labels) בטופס יהיו לבנות */
             margin-bottom: 8px;
         }
 
@@ -441,12 +441,10 @@
                     </div>
                     <div class="form-group">
                         <label for="siblings">אם יש ילדים אחרים בבית, כיצד התנהלתם:</label>
-                        <textarea id="siblings" name="התנהלות עם ילדים נוספים" required></textarea>
-                    </div>
+                        <textarea id="siblings" name="התנהלות עם ילדים נוספים"></textarea> </div>
                     <div class="form-group">
                         <label for="mediation">איך הסברתם להם את המצב?</label>
-                        <textarea id="mediation" name="תיווך לילדים" required></textarea>
-                    </div>
+                        <textarea id="mediation" name="תיווך לילדים"></textarea> </div>
                     <div class="form-group">
                         <label for="crisis">רגעי משבר קשים (שאפשר לשתף):</label>
                         <textarea id="crisis" name="רגעי משבר" required></textarea>
