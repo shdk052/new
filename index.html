@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     
     <style>
+        /* (כל סגנונות ה-CSS נשמרו כפי שסוכם) */
+        
         /* איפוס בסיסי והגדרות גלובליות */
         * {
             margin: 0;
@@ -212,6 +214,14 @@
             appearance: none;
             transition: all 0.3s;
         }
+        
+        /* סגנון לשדה העלאת קובץ */
+        input[type="file"] {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #FFF;
+            border: 2px solid #2B8C96;
+        }
 
         input:focus,
         textarea:focus {
@@ -290,7 +300,7 @@
             margin-bottom: 15px;
             border: 2px solid;
             animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            color: #FFF; /* ודא שהודעת השגיאה/הצלחה היא לבנה */
+            color: #FFF; 
         }
 
         @keyframes popIn {
@@ -368,7 +378,7 @@
         <div class="form-container">
             <div id="message"></div> 
             
-            <form id="form" name="premie-book-form" method="POST" action="/?status=success" data-netlify="true" data-netlify-honeypot="bot-field">
+            <form id="form" name="premie-book-form" method="POST" action="/?status=success" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data">
                 
                 <input type="hidden" name="form-name" value="premie-book-form" />
                 
@@ -472,6 +482,22 @@
                         <textarea id="now_and_then" name="אז והיום"></textarea>
                     </div>
                     
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">📸 תמונות מלוות (אופציונלי)</div>
+                    <p style="font-size: 0.9em; opacity: 0.9; margin-bottom: 10px;">צרפו תמונה מתקופת **הפגייה** ותמונה של הילד/ה **היום**:</p>
+
+                    <div class="form-group">
+                        <label for="photo_pagiya">תמונה 1: מתקופת הפגייה</label>
+                        <input type="file" id="photo_pagiya" name="תמונה - פגייה" accept="image/*">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="photo_today">תמונה 2: הילד/ה היום</label>
+                        <input type="file" id="photo_today" name="תמונה - היום" accept="image/*">
+                        <p style="font-size: 0.8em; opacity: 0.7; margin-top: 5px;">(שימו לב: כל קובץ מוגבל ל-8MB)</p>
+                    </div>
                 </div>
 
                 <button type="submit">שלח את הסיפור 📤</button>
