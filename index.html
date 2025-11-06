@@ -2,357 +2,597 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>הסיפור שלנו בפגייה - שיתוף</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>הסיפור שלנו בפגייה</title>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            /* צבעים מרכזיים - אסתטיקה רכה וחמימה */
-            --primary-color: #5D8E8F; /* ירוק-כחול עמוק (Teal) */
-            --secondary-color: #A3C9C9; /* תכלת רך */
-            --accent-color: #F8B490; /* גוון אפרסק/חם להדגשה */
-            --text-color: #383838;
-            --light-text-color: #6C757D;
-            --background-color: #F7F7F7; /* רקע אפור-לבן רך */
-            --form-bg: #FFFFFF;
-            --border-color: #E0E0E0;
-            --focus-shadow: 0 0 0 3px rgba(93, 142, 143, 0.25); /* צללית פוקוס רכה */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(180deg, #0A3A42 0%, #0D5A68 50%, #116B78 100%);
+            background-attachment: fixed;
+            font-family: 'Varela Round', sans-serif;
+            color: #FFF;
+            direction: rtl;
+            overflow-x: hidden;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 0;
             margin: 0;
-            padding: 20px 10px;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            direction: rtl;
-            text-align: right;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-        
-        .content-container {
-            max-width: 750px;
-            margin: 0 auto;
-        }
-        
-        /* מיכל הטקסט העליון - קופסה מורמת */
-        .header-box {
-            background: var(--form-bg);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08); /* צללית עדינה יותר */
-            margin-bottom: 30px;
-            text-align: center;
         }
 
-        .header-box h2 {
-            color: var(--primary-color);
-            font-size: 2em;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-        .header-box p {
-            margin-bottom: 10px;
-            font-size: 1.1em;
-            color: var(--light-text-color);
-        }
-        .header-box p:first-of-type {
-             font-weight: bold;
-             color: var(--text-color);
-        }
-        
-        /* עיצוב הטופס הראשי */
-        form {
-            background: var(--form-bg);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+        .scroll-container {
+            width: 100%;
+            max-height: 100vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        h1 {
-            color: var(--primary-color);
+        /* Header עם אנימציה */
+        .header {
+            background: linear-gradient(135deg, #0F5A68 0%, #084A55 100%);
+            border-radius: 16px;
+            padding: 24px 18px;
+            text-align: right; /* יישור לימין לתוכן החדש */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: slideInDown 0.6s ease-out;
+            line-height: 1.7; /* משפר קריאות */
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(77, 173, 181, 0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .header > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
             font-size: 1.8em;
-            border-bottom: 3px solid var(--accent-color);
-            padding-bottom: 15px;
-            margin-bottom: 35px;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        h2 {
-            font-size: 1.3em;
-            color: var(--primary-color);
-            border-bottom: 1px dashed var(--border-color);
-            padding-bottom: 8px;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            font-weight: 600;
+            font-weight: 900;
+            margin-bottom: 20px; /* הגדלה לוודא שאינו נחתך */
+            color: #FFF;
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+            letter-spacing: 1px;
+            text-align: center; /* כותרת ראשית במרכז */
         }
         
+        .header p {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 12px;
+        }
+
+        .header strong {
+            color: #A0E4F0;
+            font-weight: 800;
+            display: block;
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+        
+        .header .list-item {
+            margin-right: 5px; /* יישור יפה ל-V */
+            margin-bottom: 5px;
+        }
+        
+        /* עיצוב מיוחד למטרות ו-V */
+        .header .goal-title {
+            font-size: 1.1em;
+            font-weight: 800;
+            color: #A0E4F0;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            border-right: 3px solid #4DADB5;
+            padding-right: 8px;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: linear-gradient(135deg, #0F5A68 0%, #084A55 50%, #074050 100%);
+            border-radius: 16px;
+            padding: 18px;
+            border: 2px solid #2B8C96;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(77, 173, 181, 0.1);
+            animation: slideInUp 0.7s ease-out 0.1s both;
+            margin-bottom: 20px;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .section {
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px dashed rgba(77, 173, 181, 0.4);
+        }
+
+        .section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 1em;
+            font-weight: 800;
+            color: #A0E4F0;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+            animation: fadeIn 0.5s ease-out backwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
         label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 1em;
-            color: var(--text-color);
+            font-size: 0.88em;
+            font-weight: 700;
+            color: #FFF;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
         }
-        
+
         input[type="text"],
         input[type="email"],
         textarea {
             width: 100%;
-            padding: 14px;
-            margin-bottom: 30px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            box-sizing: border-box; 
-            resize: vertical;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            font-size: 1em;
-            color: var(--text-color);
-            background-color: #FAFAFA;
+            padding: 11px;
+            border: 2px solid #2B8C96;
+            border-radius: 9px;
+            background: rgba(232, 244, 246, 0.88);
+            color: #0A3A42;
+            font-family: 'Varela Round', sans-serif;
+            font-size: 0.87em;
+            -webkit-appearance: none;
+            appearance: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         input[type="text"]:focus,
         input[type="email"]:focus,
         textarea:focus {
-            border-color: var(--primary-color);
-            box-shadow: var(--focus-shadow);
             outline: none;
-            background-color: #FFF;
+            border-color: #4DADB5;
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 0 0 3px rgba(77, 173, 181, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
         }
 
-        /* כפתורי רדיו */
-        .radio-options {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 30px;
-            padding: 10px;
-            border: 1px dashed var(--secondary-color);
-            border-radius: 8px;
-            background-color: #FDFDFD;
+        textarea {
+            resize: vertical;
+            min-height: 65px;
+            max-height: 180px;
         }
-        .radio-options label {
-            font-weight: normal;
+
+        /* Radio Buttons */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            background: rgba(77, 173, 181, 0.08);
+            padding: 12px;
+            border: 2px dashed #2B8C96;
+            border-radius: 9px;
+            margin-top: 8px;
+        }
+
+        .radio-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 9px;
             cursor: pointer;
+            transition: all 0.2s;
+            padding: 4px;
+            border-radius: 6px;
+            position: relative;
         }
-        .radio-options input[type="radio"] {
-            transform: scale(1.2);
+
+        .radio-item:active {
+            background: rgba(77, 173, 181, 0.1);
+            transform: scale(0.98);
         }
-        
+
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #4DADB5;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .radio-item label {
+            margin: 0;
+            font-size: 0.85em;
+            cursor: pointer;
+            color: #FFF;
+        }
+
+        /* Submit Button */
         button[type="submit"] {
-            background-color: var(--accent-color); /* שימוש בצבע החם להדגשת הלחצן */
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #2B8C96 0%, #1A6B73 100%);
             color: white;
-            padding: 16px 30px;
             border: none;
             border-radius: 10px;
+            font-size: 0.95em;
+            font-weight: 800;
+            font-family: 'Varela Round', sans-serif;
             cursor: pointer;
-            font-size: 1.15em;
-            font-weight: bold;
+            box-shadow: 0 6px 15px rgba(26, 107, 115, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.8px;
+            -webkit-appearance: none;
+            appearance: none;
+            margin-top: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button[type="submit"]::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
-            letter-spacing: 0.5px;
-            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.5s;
         }
-        
-        button[type="submit"]:hover {
-            background-color: #E89E78; 
-            transform: translateY(-1px);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+
+        button[type="submit"]:active {
+            transform: scale(0.98);
+            box-shadow: 0 3px 8px rgba(26, 107, 115, 0.5);
         }
-        
-        /* הודעות מערכת */
-        #message-container {
-            max-width: 750px;
-            margin: 20px auto;
+
+        button[type="submit"]:active::before {
+            left: 100%;
+        }
+
+        /* Message */
+        .message {
+            padding: 12px;
+            border-radius: 9px;
             text-align: center;
+            font-weight: 700;
+            font-size: 0.88em;
+            margin-bottom: 15px;
+            border: 2px solid;
+            animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        #message-container p {
-            padding: 20px;
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .message.success {
+            background: rgba(0, 168, 120, 0.15);
+            border-color: #00A878;
+            color: #B0E8D4;
+        }
+
+        .message.error {
+            background: rgba(214, 48, 49, 0.15);
+            border-color: #D63031;
+            color: #FF9A9A;
+        }
+
+        /* Scrollbar */
+        .scroll-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .scroll-container::-webkit-scrollbar-track {
+            background: rgba(77, 173, 181, 0.1);
             border-radius: 10px;
-            font-weight: bold;
-            font-size: 1.1em;
-            margin-top: 20px;
         }
 
-        #message-container p[style*="green"] {
-            color: #155724;
-            border: 1px solid #c3e6cb;
-            background-color: #d4edda;
+        .scroll-container::-webkit-scrollbar-thumb {
+            background: rgba(77, 173, 181, 0.4);
+            border-radius: 10px;
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(77, 173, 181, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .scroll-container {
+                padding: 10px;
+                gap: 12px;
+            }
+
+            .header {
+                padding: 18px 14px;
+                border-radius: 14px;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+                margin-bottom: 15px; /* עודכן */
+            }
+            
+            .header p {
+                font-size: 0.85em;
+            }
+
+            .form-container {
+                padding: 14px;
+                border-radius: 14px;
+                margin-bottom: 15px;
+            }
+
+            /* ... יתר המדיה קווריות נשארות כפי שהן ... */
         }
         
-        #message-container p[style*="red"] {
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-            background-color: #f8d7da;
-        }
+        @media (max-width: 370px) {
+            .header h1 {
+                font-size: 1.3em;
+            }
+            
+            .header p {
+                font-size: 0.78em;
+            }
 
-        /* *** רספונסיביות משופרת - התאמה לטלפונים *** */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            .content-container {
-                max-width: 100%;
-            }
-            form {
-                padding: 20px;
-            }
-            .header-box {
-                padding: 20px;
-                margin-bottom: 20px;
-            }
-            h1 {
-                font-size: 1.5em;
-                margin-bottom: 20px;
-            }
-            h2 {
-                font-size: 1.2em;
-            }
-            .radio-options {
-                flex-direction: column;
-                gap: 15px;
-                margin-bottom: 25px;
-            }
-            button[type="submit"] {
-                padding: 14px 20px;
-                font-size: 1.1em;
-            }
-            input[type="text"], textarea {
-                margin-bottom: 20px;
-            }
+            /* ... יתר המדיה קווריות נשארות כפי שהן ... */
         }
     </style>
 </head>
 <body>
-    
-    <div class="content-container">
-
-        <div class="header-box">
-            <h2>💗 הסיפור שלנו בפגייה</h2>
-            <p style="font-weight: bold;">מיזם של דיקלה ויגאל גולד, מתנדבים בעמותת לה"ב</p>
-            <p>אנחנו אוספים סיפורים אישיים מהורים שעברו לידה מוקדמת, כדי ליצור ספר דיגיטלי שיחזק ויעודד הורים שמגיעים היום לראשונה לפגייה. נשמח מאוד לשתף גם את הסיפור שלכם — במלואו או באופן אנונימי, לפי בחירתכם.</p>
-        </div>
-
-        <form method="POST" action="https://formspree.io/f/mwpwgvdd" id="submission-form">
-            <h1>שיתוף סיפור</h1>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>ספר גדול על פגים קטנים</h1>
             
-            <input type="hidden" name="_clear" value="subject" />
-            <input type="hidden" name="_subject" value="סיפור חדש ממיזם הפגייה - {{ שם מלא }} | ID: {{ ייחודיות_שליחה }}" />
-            <input type="hidden" id="unique_id" name="ייחודיות_שליחה" value=""> 
+            <p>היי אתם 🙋🏼‍♀️🙋🏼‍♂️</p>
+            <p>
+                איך חוויתם את תקופת הפגייה?<br>
+                מה עזר לכם להתמודד?<br>
+                מה הייתם רוצים להגיד להורים שנמצאים שם עכשיו?
+            </p>
+            
+            <p>אנחנו, יגאל ודיקלה גולד, הורים לעמית שנולד בשבוע 26 בהפתעה ומתנדבים בעמותת לה"ב</p>
+            <p>לאחר הרבה שיחות עם הורים לפגים המוני פוסטים של סיפורי פגים 😃 ואינסוף שיחות עם רומי 😃חלמנו והינה מגשימים...</p>
+            
+            <p>אנחנו **מזמינים אתכם להשתתף במיזם מיוחד**</p>
+            <p>ספר דיגיטלי ומודפס שיאסוף סיפורים של הורים לפגים מכל רחבי הארץ ובכל גיל.</p>
+            
+            <p class="goal-title">המטרה שלנו:</p>
+            <p>לתת כוח ותקווה להורים שנמצאים עכשיו בפגייה .. חלקם מבולבלים, עייפים, ושבורי לב.</p>
+            
+            <p>דרך הסיפור שלכם נוכל לתת תקווה תחושת הזדהות ואמפטיה</p>
+            <p>לאמא שיושבת עכשיו ליד האינקובטור ובוכה,</p>
+            <p>או של אבא שמחפש תשובה לשאלה אם גם אצלם "יהיה בסדר".</p>
+            
+            <p class="list-item">✅ **אנחנו רוצים לתת מקום לסיפור שלכם**</p>
+            <p style="margin-right: 20px;">לכאב, לגבורה, לאהבה, לנס, לדמעות ולצחוק.</p>
+            
+            <p class="list-item">✅ **להעלות את המודעות ללידות מוקדמות**</p>
+            <p style="margin-right: 20px;">ולספר לעולם על הפגים הקטנים שהם גיבורים גדולים..</p>
 
-            <label style="margin-top: 5px; display: block; font-weight: bold; margin-bottom: 10px;">אנחנו, הח"מ, מאשרים לשתף את הסיפור שלנו כחלק מהמיזם "הסיפור שלנו בפגייה":</label>
-            <div class="radio-options">
-                <label>
-                    <input type="radio" name="אופן שיתוף הסיפור" value="בשם מלא" required> בשמנו המלא
-                </label>
-                <label>
-                    <input type="radio" name="אופן שיתוף הסיפור" value="אנונימי" required> באופן אנונימי
-                </label>
+            <p class="list-item">✅ **ומעל הכל** , כאמור שהסיפור שלכם יתן כוח להורים אחרים שנמצאים באותו מצב...</p>
+            
+            <strong>תודה על שיתוף הפעולה!</strong>
+            
+            <p style="margin-top: 15px;">📞 דיקלה 0525238282</p>
+            <p>📞 יגאל 0528119587</p>
+            <p style="font-size: 0.75em; margin-top: -8px;">( מנהלי קבוצות אמהות ואבות לפגים - עמותת לה"ב )</p>
             </div>
 
-            <label for="full_name">שם מלא:</label>
-            <input type="text" id="full_name" name="שם מלא" required>
-            
-            <label for="contact">טלפון / מייל (לצורך יצירת קשר במקרה הצורך):</label>
-            <input type="text" id="contact" name="אימייל או טלפון ליצירת קשר" required>
-            
-            <h2>🎵 שיר מלווה</h2>
+        <div class="form-container">
+            <form id="form" method="POST" action="https://formspree.io/f/mwpwgvdd">
+                <input type="hidden" name="_clear" value="subject">
+                <input type="hidden" name="_subject" value="סיפור חדש ממיזם הפגייה - {{ שם מלא }} | ID: {{ ייחודיות_שליחה }}">
+                <input type="hidden" id="unique_id" name="ייחודיות_שליחה" value="">
 
-            <label for="song_title">שיר שליווה אתכם בתקופת האשפוז בפגייה:</label>
-            <input type="text" id="song_title" name="שיר מלווה" required>
+                <div class="section">
+                    <label style="color: #A0E4F0; margin-bottom: 8px;">אופן שיתוף:</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="r1" name="אופן שיתוף הסיפור" value="בשם מלא" required>
+                            <label for="r1">בשמי המלא</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="r2" name="אופן שיתוף הסיפור" value="אנונימי" required>
+                            <label for="r2">אנונימי</label>
+                        </div>
+                    </div>
+                </div>
 
-            <label for="song_reason">למה בחרתם דווקא בשיר הזה?</label>
-            <textarea id="song_reason" name="סיבת בחירת השיר" rows="3" required></textarea>
+                <div class="section">
+                    <div class="section-title">👤 פרטים</div>
+                    <div class="form-group">
+                        <label for="name">שם מלא:</label>
+                        <input type="text" id="name" name="שם מלא" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">טלפון / מייל:</label>
+                        <input type="text" id="contact" name="אימייל או טלפון ליצירת קשר" required>
+                    </div>
+                </div>
 
-            <h2>👶 סיפור הלידה שלכם</h2>
+                <div class="section">
+                    <div class="section-title">🎵 שיר מלווה</div>
+                    <div class="form-group">
+                        <label for="song">שם השיר:</label>
+                        <input type="text" id="song" name="שיר מלווה" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="song_why">למה הוא היה חשוב?</label>
+                        <textarea id="song_why" name="סיבת בחירת השיר" required></textarea>
+                    </div>
+                </div>
 
-            <label for="early_realization">מתי הבנתם שתלדו מוקדם?</label>
-            <textarea id="early_realization" name="הבנה על לידה מוקדמת" rows="4" required></textarea>
-            
-            <label for="birth_week">באיזה שבוע ילדתם?</label>
-            <input type="text" id="birth_week" name="שבוע לידה" required>
-            
-            <label for="postpartum_realization">מתי קלטת שאת (או אתה) אחרי לידה?</label>
-            <textarea id="postpartum_realization" name="קליטת לידה" rows="4" required></textarea>
+                <div class="section">
+                    <div class="section-title">👶 סיפור הלידה</div>
+                    <div class="form-group">
+                        <label for="early">מתי הבנתם שתלדו מוקדם?</label>
+                        <textarea id="early" name="הבנה על לידה מוקדמת" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="week">באיזה שבוע?</label>
+                        <input type="text" id="week" name="שבוע לידה" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="realization">הקליטה אחרי הלידה:</label>
+                        <textarea id="realization" name="קליטת לידה" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="first">המפגש הראשון:</label>
+                        <textarea id="first" name="מפגש ראשון באינקובטור" required></textarea>
+                    </div>
+                </div>
 
-            <label for="first_meeting">איך הייתה החוויה להיפגש עם התינוק באינקובטור בפעם הראשונה? מה הרגשתם? מה חשבתם?</label>
-            <textarea id="first_meeting" name="מפגש ראשון באינקובטור" rows="6" required></textarea>
-            
-            <h2>💪 ההתמודדות והכוחות</h2>
+                <div class="section">
+                    <div class="section-title">💪 כוח והתמודדות</div>
+                    <div class="form-group">
+                        <label for="strength">מה נתן לכם כוח?</label>
+                        <textarea id="strength" name="כוח להתמודדות" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="siblings">ילדים אחרים בבית:</label>
+                        <textarea id="siblings" name="התנהלות עם ילדים נוספים" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="mediation">איך הסברתם להם?</label>
+                        <textarea id="mediation" name="תיווך לילדים" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="crisis">רגעי משבר:</label>
+                        <textarea id="crisis" name="רגעי משבר" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="light">נקודות אור:</label>
+                        <textarea id="light" name="נקודות אור" required></textarea>
+                    </div>
+                </div>
 
-            <label for="strength_source">מה הדבר שנתן לכם כוח להתמודד עם הקשיים בפגייה?</label>
-            <textarea id="strength_source" name="כוח להתמודדות" rows="4" required></textarea>
+                <div class="section">
+                    <div class="section-title">💌 לסיום</div>
+                    <div class="form-group">
+                        <label for="encourage">משפט עידוד:</label>
+                        <textarea id="encourage" name="משפט עידוד" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="advice">מה הייתם רוצים לשמוע?</label>
+                        <textarea id="advice" name="מה הייתם רוצים שיגידו לכם" required></textarea>
+                    </div>
+                </div>
 
-            <label for="siblings_handling">אם היו עוד ילדים בבית – איך התנהלתם בתקופה הזו, ומה חשוב בעיניכם לשים לב אליו?</label>
-            <textarea id="siblings_handling" name="התנהלות עם ילדים נוספים" rows="4" required></textarea>
+                <input type="hidden" name="_next" value="https://new-rdei.onrender.com/?status=success">
+                <button type="submit">שלח את הסיפור 📤</button>
+            </form>
 
-            <label for="siblings_mediation">איך תיווכתם להם את זה שלא ניתן לראות את התינוק שזה עתה נולד?</label>
-            <textarea id="siblings_mediation" name="תיווך לילדים" rows="4" required></textarea>
-
-            <label for="crisis_moments">ספרו על רגעי משבר שהיו לכם.</label>
-            <textarea id="crisis_moments" name="רגעי משבר" rows="5" required></textarea>
-
-            <label for="light_points">ומה היו נקודות האור שנאחזתם בהן כדי לקום ולהמשיך?</label>
-            <textarea id="light_points" name="נקודות אור" rows="5" required></textarea>
-
-            <h2>💌 לסיום</h2>
-
-            <label for="encouragement">כתבו משפט עידוד אחד להורים שמתמודדים עכשיו עם אשפוז בפגייה.</label>
-            <textarea id="encouragement" name="משפט עידוד" rows="3" required></textarea>
-
-            <label for="past_advice">מה הייתם רוצים שיגידו לכם אז?</label>
-            <textarea id="past_advice" name="מה הייתם רוצים שיגידו לכם" rows="3" required></textarea>
-            
-            <input type="hidden" name="_next" value="https://new-rdei.onrender.com/?status=success" />
-
-            <button type="submit">שלח סיפור</button>
-        </form>
-        
-        <div id="message-container">
+            <div id="message"></div>
         </div>
     </div>
 
     <script>
-        // *** לוגיקת ה-Timestamp ***
-        const uniqueIdInput = document.getElementById('unique_id');
-        const form = document.getElementById('submission-form');
+        const form = document.getElementById('form');
+        const messageDiv = document.getElementById('message');
         
         // פונקציה שמייצרת ID ייחודי (חותמת זמן במילישניות)
         function generateUniqueId() {
-            // Date.now() מחזיר מספר ייחודי (במילישניות) בכל רגע נתון
             return Date.now();
         }
 
         // ממלא את השדה הנסתר ברגע טעינת הדף
-        uniqueIdInput.value = generateUniqueId();
+        document.getElementById('unique_id').value = generateUniqueId();
         
-        // מוודא שה-ID מתעדכן רגע לפני השליחה (למקרה שהמשתמש השהה את הדף)
-        form.addEventListener('submit', function() {
-            uniqueIdInput.value = generateUniqueId();
+        // מוודא שה-ID מתעדכן רגע לפני השליחה
+        form.addEventListener('submit', () => {
+            document.getElementById('unique_id').value = generateUniqueId();
         });
 
-        // *** לוגיקת הודעת הצלחה/שגיאה ***
-        const urlParams = new URLSearchParams(window.location.search);
-        const status = urlParams.get('status');
-        const messageContainer = document.getElementById('message-container');
+        const params = new URLSearchParams(window.location.search);
+        const status = params.get('status');
 
         if (status === 'success') {
-            messageContainer.innerHTML = '<p style="color: green;">הטופס נשלח בהצלחה! תודה רבה.</p>';
+            messageDiv.className = 'message success';
+            messageDiv.textContent = '✅ הטופס נשלח בהצלחה! תודה על השיתוף.';
             // מנקה את ה-URL
-            setTimeout(() => {
-                window.history.replaceState(null, null, window.location.pathname);
-            }, 500);
+            setTimeout(() => window.history.replaceState(null, null, location.pathname), 500);
         } else if (status === 'error') {
-            messageContainer.innerHTML = '<p style="color: red;">אירעה שגיאה בשליחת הטופס. אנא ודא שהאימייל שלך מאומת ב-Formspree.</p>';
+            messageDiv.className = 'message error';
+            messageDiv.textContent = '❌ שגיאה בשליחה. אנא נסה שנית.';
         }
     </script>
-
 </body>
 </html>
