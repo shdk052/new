@@ -3,67 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>הסיפור שלנו בפגייה</title>
+    <title>ספר גדול על פגים קטנים</title>
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     
     <style>
+        /* איפוס בסיסי והגדרות גלובליות */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* גוף הדף - רקע וגופן */
         html, body {
-            width: 100vw;
-            height: 100vh;
+            width: 100%; /* שינוי ל-100% לוודא רספונסיביות */
+            min-height: 100vh;
             background: linear-gradient(180deg, #0A3A42 0%, #0D5A68 50%, #116B78 100%);
             background-attachment: fixed;
             font-family: 'Varela Round', sans-serif;
             color: #FFF;
             direction: rtl;
-            overflow-x: hidden;
+            overflow-x: hidden; /* מונע גלילה אופקית (רוחב יתר) */
         }
 
-        body {
-            padding: 0;
-            margin: 0;
-        }
-
-        .scroll-container {
+        /* מכל שמרכז את התוכן ודואג לגלילה אנכית */
+        .container {
             width: 100%;
-            max-height: 100vh;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            padding: 12px;
+            max-width: 650px; /* מגביל רוחב מקסימלי לשולחנות עבודה/טאבלטים גדולים */
+            margin: 0 auto; /* ממקם במרכז */
+            padding: 15px; /* מרווח פנימי כללי */
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
-
-        /* Header עם אנימציה */
+        
+        /* אזור הכותרת וההקדמה */
         .header {
             background: linear-gradient(135deg, #0F5A68 0%, #084A55 100%);
-            border-radius: 16px;
-            padding: 24px 18px;
-            text-align: right; /* יישור לימין לתוכן החדש */
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border-radius: 18px;
+            padding: 25px 20px;
+            text-align: right;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
             animation: slideInDown 0.6s ease-out;
-            line-height: 1.7; /* משפר קריאות */
+            line-height: 1.6;
         }
 
         @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
+        /* אפקט הברק בכותרת */
         .header::before {
             content: '';
             position: absolute;
@@ -75,89 +67,90 @@
             animation: shimmer 3s infinite;
             pointer-events: none;
         }
-
         @keyframes shimmer {
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
         }
 
-        .header > * {
-            position: relative;
-            z-index: 1;
-        }
-
+        /* כותרת ראשית (תוקן: גודל מספיק למניעת חיתוך) */
         .header h1 {
-            font-size: 1.8em;
+            font-size: 2.1em;
             font-weight: 900;
-            margin-bottom: 20px; /* הגדלה לוודא שאינו נחתך */
-            color: #FFF;
-            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+            margin-bottom: 25px; 
+            color: #A0E4F0; /* צבע מודגש */
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             letter-spacing: 1px;
-            text-align: center; /* כותרת ראשית במרכז */
+            text-align: center;
         }
         
         .header p {
-            font-size: 0.9em;
-            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95em;
+            color: rgba(255, 255, 255, 0.95);
             margin-bottom: 12px;
         }
-
-        .header strong {
-            color: #A0E4F0;
+        
+        /* עיצוב מטרות עם V */
+        .header .goal-title {
+            font-size: 1.05em;
             font-weight: 800;
-            display: block;
-            margin-top: 15px;
-            font-size: 1.1em;
+            color: #4DADB5;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            border-right: 4px solid #A0E4F0;
+            padding-right: 10px;
+            display: inline-block;
         }
         
         .header .list-item {
-            margin-right: 5px; /* יישור יפה ל-V */
-            margin-bottom: 5px;
+            margin-top: 10px;
+            display: flex;
+            align-items: flex-start;
+            font-weight: 700;
         }
         
-        /* עיצוב מיוחד למטרות ו-V */
-        .header .goal-title {
-            font-size: 1.1em;
-            font-weight: 800;
+        .header .list-item span.icon {
             color: #A0E4F0;
-            margin-top: 20px;
-            margin-bottom: 5px;
-            border-right: 3px solid #4DADB5;
-            padding-right: 8px;
+            font-size: 1.2em;
+            margin-left: 8px;
+            flex-shrink: 0;
+        }
+        
+        /* עיצוב קריאה לפעולה (מידע ליצירת קשר) */
+        .header .contact-info {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(77, 173, 181, 0.3);
+            font-size: 0.9em;
+            text-align: center;
+        }
+        
+        .header .contact-info p {
+            margin: 5px 0;
         }
 
-        /* Form Container */
+        /* מכל הטופס */
         .form-container {
-            background: linear-gradient(135deg, #0F5A68 0%, #084A55 50%, #074050 100%);
-            border-radius: 16px;
-            padding: 18px;
+            background: linear-gradient(135deg, #0F5A68 0%, #074050 100%);
+            border-radius: 18px;
+            padding: 20px;
             border: 2px solid #2B8C96;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(77, 173, 181, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 2px 0 rgba(77, 173, 181, 0.1);
             animation: slideInUp 0.7s ease-out 0.1s both;
-            margin-bottom: 20px;
         }
 
         @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
+        /* עיצוב פנימי של הטופס (שדות וליבלים) */
         form {
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 0;
         }
 
         .section {
-            margin-bottom: 18px;
-            padding-bottom: 18px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
             border-bottom: 1px dashed rgba(77, 173, 181, 0.4);
         }
 
@@ -168,178 +161,123 @@
         }
 
         .section-title {
-            font-size: 1em;
+            font-size: 1.1em;
             font-weight: 800;
             color: #A0E4F0;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .form-group {
-            margin-bottom: 12px;
-            animation: fadeIn 0.5s ease-out backwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            margin-bottom: 15px;
         }
 
         label {
             display: block;
-            font-size: 0.88em;
+            font-size: 0.9em;
             font-weight: 700;
             color: #FFF;
-            margin-bottom: 6px;
-            letter-spacing: 0.3px;
+            margin-bottom: 8px;
         }
 
         input[type="text"],
         input[type="email"],
         textarea {
             width: 100%;
-            padding: 11px;
+            padding: 12px;
             border: 2px solid #2B8C96;
-            border-radius: 9px;
-            background: rgba(232, 244, 246, 0.88);
+            border-radius: 10px;
+            background: rgba(232, 244, 246, 0.9);
             color: #0A3A42;
             font-family: 'Varela Round', sans-serif;
-            font-size: 0.87em;
+            font-size: 0.9em;
             -webkit-appearance: none;
             appearance: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
         }
 
-        input[type="text"]:focus,
-        input[type="email"]:focus,
+        input:focus,
         textarea:focus {
             outline: none;
             border-color: #4DADB5;
-            background: rgba(255, 255, 255, 0.96);
-            box-shadow: 0 0 0 3px rgba(77, 173, 181, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.05);
-            transform: translateY(-2px);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(77, 173, 181, 0.3);
         }
 
         textarea {
             resize: vertical;
-            min-height: 65px;
-            max-height: 180px;
+            min-height: 80px;
         }
 
         /* Radio Buttons */
         .radio-group {
             display: flex;
             flex-direction: column;
-            gap: 9px;
+            gap: 10px;
             background: rgba(77, 173, 181, 0.08);
-            padding: 12px;
-            border: 2px dashed #2B8C96;
-            border-radius: 9px;
-            margin-top: 8px;
+            padding: 15px;
+            border: 1px solid #2B8C96;
+            border-radius: 10px;
         }
 
         .radio-item {
             display: flex;
             align-items: center;
-            gap: 9px;
+            gap: 10px;
             cursor: pointer;
-            transition: all 0.2s;
-            padding: 4px;
-            border-radius: 6px;
-            position: relative;
-        }
-
-        .radio-item:active {
-            background: rgba(77, 173, 181, 0.1);
-            transform: scale(0.98);
         }
 
         input[type="radio"] {
-            width: 18px;
-            height: 18px;
+            width: 19px;
+            height: 19px;
             accent-color: #4DADB5;
             cursor: pointer;
-            flex-shrink: 0;
         }
-
+        
         .radio-item label {
             margin: 0;
-            font-size: 0.85em;
-            cursor: pointer;
-            color: #FFF;
+            font-size: 0.9em;
         }
+
 
         /* Submit Button */
         button[type="submit"] {
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #2B8C96 0%, #1A6B73 100%);
-            color: white;
+            padding: 15px;
+            background: linear-gradient(135deg, #A0E4F0 0%, #4DADB5 100%);
+            color: #0A3A42;
             border: none;
             border-radius: 10px;
-            font-size: 0.95em;
+            font-size: 1.0em;
             font-weight: 800;
             font-family: 'Varela Round', sans-serif;
             cursor: pointer;
-            box-shadow: 0 6px 15px rgba(26, 107, 115, 0.4);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            letter-spacing: 0.8px;
-            -webkit-appearance: none;
-            appearance: none;
-            margin-top: 6px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        button[type="submit"]::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: left 0.5s;
+            box-shadow: 0 8px 20px rgba(77, 173, 181, 0.4);
+            transition: all 0.3s;
+            margin-top: 15px;
         }
 
         button[type="submit"]:active {
             transform: scale(0.98);
-            box-shadow: 0 3px 8px rgba(26, 107, 115, 0.5);
+            box-shadow: 0 3px 10px rgba(77, 173, 181, 0.6);
         }
-
-        button[type="submit"]:active::before {
-            left: 100%;
-        }
-
+        
         /* Message */
         .message {
+            /* עיצוב הודעת הצלחה/שגיאה נשאר זהה */
             padding: 12px;
             border-radius: 9px;
             text-align: center;
             font-weight: 700;
-            font-size: 0.88em;
+            font-size: 0.9em;
             margin-bottom: 15px;
             border: 2px solid;
             animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         @keyframes popIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
         }
 
         .message.success {
@@ -348,78 +286,27 @@
             color: #B0E8D4;
         }
 
-        .message.error {
-            background: rgba(214, 48, 49, 0.15);
-            border-color: #D63031;
-            color: #FF9A9A;
-        }
-
-        /* Scrollbar */
-        .scroll-container::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .scroll-container::-webkit-scrollbar-track {
-            background: rgba(77, 173, 181, 0.1);
-            border-radius: 10px;
-        }
-
-        .scroll-container::-webkit-scrollbar-thumb {
-            background: rgba(77, 173, 181, 0.4);
-            border-radius: 10px;
-        }
-
-        .scroll-container::-webkit-scrollbar-thumb:hover {
-            background: rgba(77, 173, 181, 0.6);
-        }
-
-        /* Responsive */
-        @media (max-width: 500px) {
-            .scroll-container {
+        /* מדיה קווריות - התאמות קטנות למסכים קטנים מאוד */
+        @media (max-width: 400px) {
+            .container {
                 padding: 10px;
-                gap: 12px;
             }
-
+            .header h1 {
+                font-size: 1.8em;
+            }
             .header {
-                padding: 18px 14px;
-                border-radius: 14px;
+                padding: 20px 15px;
             }
-
-            .header h1 {
-                font-size: 1.5em;
-                margin-bottom: 15px; /* עודכן */
-            }
-            
             .header p {
-                font-size: 0.85em;
+                font-size: 0.9em;
             }
-
-            .form-container {
-                padding: 14px;
-                border-radius: 14px;
-                margin-bottom: 15px;
-            }
-
-            /* ... יתר המדיה קווריות נשארות כפי שהן ... */
-        }
-        
-        @media (max-width: 370px) {
-            .header h1 {
-                font-size: 1.3em;
-            }
-            
-            .header p {
-                font-size: 0.78em;
-            }
-
-            /* ... יתר המדיה קווריות נשארות כפי שהן ... */
         }
     </style>
 </head>
 <body>
-    <div class="scroll-container">
+    <div class="container">
         <div class="header">
-            <h1>ספר גדול על פגים קטנים</h1>
+            <h1>סיפור גדול על פגים קטנים</h1>
             
             <p>היי אתם 🙋🏼‍♀️🙋🏼‍♂️</p>
             <p>
@@ -431,7 +318,7 @@
             <p>אנחנו, יגאל ודיקלה גולד, הורים לעמית שנולד בשבוע 26 בהפתעה ומתנדבים בעמותת לה"ב</p>
             <p>לאחר הרבה שיחות עם הורים לפגים המוני פוסטים של סיפורי פגים 😃 ואינסוף שיחות עם רומי 😃חלמנו והינה מגשימים...</p>
             
-            <p>אנחנו **מזמינים אתכם להשתתף במיזם מיוחד**</p>
+            <p>**אנחנו מזמינים אתכם להשתתף במיזם מיוחד**</p>
             <p>ספר דיגיטלי ומודפס שיאסוף סיפורים של הורים לפגים מכל רחבי הארץ ובכל גיל.</p>
             
             <p class="goal-title">המטרה שלנו:</p>
@@ -439,31 +326,33 @@
             
             <p>דרך הסיפור שלכם נוכל לתת תקווה תחושת הזדהות ואמפטיה</p>
             <p>לאמא שיושבת עכשיו ליד האינקובטור ובוכה,</p>
-            <p>או של אבא שמחפש תשובה לשאלה אם גם אצלם "יהיה בסדר".</p>
+            <p>או של אבא שמחפש תשובה לשאלה אם גם אצלם “יהיה בסדר”.</p>
             
-            <p class="list-item">✅ **אנחנו רוצים לתת מקום לסיפור שלכם**</p>
+            <div class="list-item"><span class="icon">✅</span> **אנחנו רוצים לתת מקום לסיפור שלכם**</div>
             <p style="margin-right: 20px;">לכאב, לגבורה, לאהבה, לנס, לדמעות ולצחוק.</p>
             
-            <p class="list-item">✅ **להעלות את המודעות ללידות מוקדמות**</p>
+            <div class="list-item"><span class="icon">✅</span> **להעלות את המודעות ללידות מוקדמות**</div>
             <p style="margin-right: 20px;">ולספר לעולם על הפגים הקטנים שהם גיבורים גדולים..</p>
 
-            <p class="list-item">✅ **ומעל הכל** , כאמור שהסיפור שלכם יתן כוח להורים אחרים שנמצאים באותו מצב...</p>
+            <div class="list-item"><span class="icon">✅</span> **ומעל הכל** , כאמור שהסיפור שלכם יתן כוח להורים אחרים שנמצאים באותו מצב...</div>
             
-            <strong>תודה על שיתוף הפעולה!</strong>
-            
-            <p style="margin-top: 15px;">📞 דיקלה 0525238282</p>
-            <p>📞 יגאל 0528119587</p>
-            <p style="font-size: 0.75em; margin-top: -8px;">( מנהלי קבוצות אמהות ואבות לפגים - עמותת לה"ב )</p>
+            <div class="contact-info">
+                <p>**תודה על שיתוף הפעולה!**</p>
+                <p>📞 דיקלה **0525238282** | 📞 יגאל **0528119587**</p>
+                <p style="font-size: 0.75em; color: rgba(255, 255, 255, 0.7);">( מנהלי קבוצות אמהות ואבות לפגים - עמותת לה"ב )</p>
+            </div>
             </div>
 
         <div class="form-container">
+            <div id="message"></div> 
+            
             <form id="form" method="POST" action="https://formspree.io/f/mwpwgvdd">
                 <input type="hidden" name="_clear" value="subject">
                 <input type="hidden" name="_subject" value="סיפור חדש ממיזם הפגייה - {{ שם מלא }} | ID: {{ ייחודיות_שליחה }}">
                 <input type="hidden" id="unique_id" name="ייחודיות_שליחה" value="">
 
                 <div class="section">
-                    <label style="color: #A0E4F0; margin-bottom: 8px;">אופן שיתוף:</label>
+                    <div class="section-title">🗳️ אופן שיתוף הסיפור:</div>
                     <div class="radio-group">
                         <div class="radio-item">
                             <input type="radio" id="r1" name="אופן שיתוף הסיפור" value="בשם מלא" required>
@@ -477,7 +366,7 @@
                 </div>
 
                 <div class="section">
-                    <div class="section-title">👤 פרטים</div>
+                    <div class="section-title">👤 פרטים ליצירת קשר</div>
                     <div class="form-group">
                         <label for="name">שם מלא:</label>
                         <input type="text" id="name" name="שם מלא" required>
@@ -495,27 +384,27 @@
                         <input type="text" id="song" name="שיר מלווה" required>
                     </div>
                     <div class="form-group">
-                        <label for="song_why">למה הוא היה חשוב?</label>
+                        <label for="song_why">למה הוא היה חשוב בתקופה זו?</label>
                         <textarea id="song_why" name="סיבת בחירת השיר" required></textarea>
                     </div>
                 </div>
 
                 <div class="section">
-                    <div class="section-title">👶 סיפור הלידה</div>
+                    <div class="section-title">👶 סיפור הלידה והפגייה</div>
                     <div class="form-group">
-                        <label for="early">מתי הבנתם שתלדו מוקדם?</label>
+                        <label for="early">מתי הבנתם שתלדו מוקדם / הגעתם לפגייה?</label>
                         <textarea id="early" name="הבנה על לידה מוקדמת" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="week">באיזה שבוע?</label>
+                        <label for="week">באיזה שבוע הילד/ה נולד/ה?</label>
                         <input type="text" id="week" name="שבוע לידה" required>
                     </div>
                     <div class="form-group">
-                        <label for="realization">הקליטה אחרי הלידה:</label>
+                        <label for="realization">הקליטה אחרי הלידה (איך הרגשתם כשראיתם אותו/אותה לראשונה):</label>
                         <textarea id="realization" name="קליטת לידה" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="first">המפגש הראשון:</label>
+                        <label for="first">תיאור המפגש הראשון עם הפג/ה:</label>
                         <textarea id="first" name="מפגש ראשון באינקובטור" required></textarea>
                     </div>
                 </div>
@@ -523,35 +412,35 @@
                 <div class="section">
                     <div class="section-title">💪 כוח והתמודדות</div>
                     <div class="form-group">
-                        <label for="strength">מה נתן לכם כוח?</label>
+                        <label for="strength">מה נתן לכם כוח וסייע בהתמודדות?</label>
                         <textarea id="strength" name="כוח להתמודדות" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="siblings">ילדים אחרים בבית:</label>
+                        <label for="siblings">אם יש ילדים אחרים בבית, כיצד התנהלתם:</label>
                         <textarea id="siblings" name="התנהלות עם ילדים נוספים" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="mediation">איך הסברתם להם?</label>
+                        <label for="mediation">איך הסברתם להם את המצב?</label>
                         <textarea id="mediation" name="תיווך לילדים" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="crisis">רגעי משבר:</label>
+                        <label for="crisis">רגעי משבר קשים (שאפשר לשתף):</label>
                         <textarea id="crisis" name="רגעי משבר" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="light">נקודות אור:</label>
+                        <label for="light">נקודות אור/רגעי נס קטנים:</label>
                         <textarea id="light" name="נקודות אור" required></textarea>
                     </div>
                 </div>
 
                 <div class="section">
-                    <div class="section-title">💌 לסיום</div>
+                    <div class="section-title">💌 מסר להורים שבפגייה כעת</div>
                     <div class="form-group">
-                        <label for="encourage">משפט עידוד:</label>
+                        <label for="encourage">משפט עידוד / מנטרה שליוותה אתכם:</label>
                         <textarea id="encourage" name="משפט עידוד" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="advice">מה הייתם רוצים לשמוע?</label>
+                        <label for="advice">מה הייתם רוצים לשמוע כשהייתם בפגייה?</label>
                         <textarea id="advice" name="מה הייתם רוצים שיגידו לכם" required></textarea>
                     </div>
                 </div>
@@ -559,8 +448,6 @@
                 <input type="hidden" name="_next" value="https://new-rdei.onrender.com/?status=success">
                 <button type="submit">שלח את הסיפור 📤</button>
             </form>
-
-            <div id="message"></div>
         </div>
     </div>
 
@@ -568,7 +455,7 @@
         const form = document.getElementById('form');
         const messageDiv = document.getElementById('message');
         
-        // פונקציה שמייצרת ID ייחודי (חותמת זמן במילישניות)
+        // פונקציה שמייצרת ID ייחודי
         function generateUniqueId() {
             return Date.now();
         }
@@ -576,22 +463,23 @@
         // ממלא את השדה הנסתר ברגע טעינת הדף
         document.getElementById('unique_id').value = generateUniqueId();
         
-        // מוודא שה-ID מתעדכן רגע לפני השליחה
+        // מוודא שה-ID מתעדכן רגע לפני השליחה כדי למנוע כפילויות
         form.addEventListener('submit', () => {
             document.getElementById('unique_id').value = generateUniqueId();
         });
 
+        // טיפול בהודעת סטטוס לאחר שליחה (לדף אליו מפנה Formspree)
         const params = new URLSearchParams(window.location.search);
         const status = params.get('status');
 
         if (status === 'success') {
             messageDiv.className = 'message success';
-            messageDiv.textContent = '✅ הטופס נשלח בהצלחה! תודה על השיתוף.';
-            // מנקה את ה-URL
+            messageDiv.textContent = '✅ הטופס נשלח בהצלחה! תודה רבה על שיתוף הסיפור שלכם.';
+            // מנקה את ה-URL לניקיון
             setTimeout(() => window.history.replaceState(null, null, location.pathname), 500);
         } else if (status === 'error') {
             messageDiv.className = 'message error';
-            messageDiv.textContent = '❌ שגיאה בשליחה. אנא נסה שנית.';
+            messageDiv.textContent = '❌ שגיאה בשליחה. אנא נסו שנית או צרו קשר ישירות.';
         }
     </script>
 </body>
