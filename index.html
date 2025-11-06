@@ -16,22 +16,22 @@
 
         /* גוף הדף - רקע וגופן */
         html, body {
-            width: 100%; /* שינוי ל-100% לוודא רספונסיביות */
+            width: 100%;
             min-height: 100vh;
             background: linear-gradient(180deg, #0A3A42 0%, #0D5A68 50%, #116B78 100%);
             background-attachment: fixed;
             font-family: 'Varela Round', sans-serif;
             color: #FFF;
             direction: rtl;
-            overflow-x: hidden; /* מונע גלילה אופקית (רוחב יתר) */
+            overflow-x: hidden;
         }
 
         /* מכל שמרכז את התוכן ודואג לגלילה אנכית */
         .container {
             width: 100%;
-            max-width: 650px; /* מגביל רוחב מקסימלי לשולחנות עבודה/טאבלטים גדולים */
-            margin: 0 auto; /* ממקם במרכז */
-            padding: 15px; /* מרווח פנימי כללי */
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -71,6 +71,20 @@
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
         }
+        
+        /* *** סגנון הלוגו החדש *** */
+        .logo {
+            text-align: center;
+            margin-bottom: 25px; /* מרווח מתחת ללוגו לפני הכותרת */
+        }
+
+        .logo img {
+            max-width: 120px; /* גודל מקסימלי סביר */
+            width: 30%; /* רספונסיביות */
+            height: auto;
+            display: inline-block;
+        }
+        /* *** סוף סגנון הלוגו החדש *** */
 
         /* כותרת ראשית (תוקן: גודל מספיק למניעת חיתוך) */
         .header h1 {
@@ -264,7 +278,6 @@
         
         /* Message */
         .message {
-            /* עיצוב הודעת הצלחה/שגיאה נשאר זהה */
             padding: 12px;
             border-radius: 9px;
             text-align: center;
@@ -300,12 +313,19 @@
             .header p {
                 font-size: 0.9em;
             }
+            .logo img {
+                max-width: 100px; /* קטן יותר במסכים צרים מאוד */
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
+            <div class="logo">
+                <img src="https://ibb.co/jvphSvj" alt="לוגו האתר">
+            </div>
+            
             <h1>סיפור גדול על פגים קטנים</h1>
             
             <p>היי אתם 🙋🏼‍♀️🙋🏼‍♂️</p>
@@ -341,7 +361,7 @@
                 <p>📞 דיקלה **0525238282** | 📞 יגאל **0528119587**</p>
                 <p style="font-size: 0.75em; color: rgba(255, 255, 255, 0.7);">( מנהלי קבוצות אמהות ואבות לפגים - עמותת לה"ב )</p>
             </div>
-            </div>
+        </div>
 
         <div class="form-container">
             <div id="message"></div> 
