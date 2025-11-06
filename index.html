@@ -117,16 +117,19 @@
             padding-bottom: 12px;
             margin-top: 45px;
             margin-bottom: 25px;
-            font-weight: 700;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
         }
         
         label {
             display: block;
             margin-bottom: 10px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1.05em;
             color: #FFFFFF;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         
         input[type="text"],
@@ -250,106 +253,170 @@
 
         @media (max-width: 768px) {
             body {
-                padding: 12px;
+                padding: 15px;
                 background-attachment: fixed;
             }
             .content-container {
                 max-width: 100%;
-                padding: 0;
             }
             form {
-                padding: 20px;
-                margin: 0 -12px;
-                border-radius: 16px;
+                padding: 25px;
+                border-radius: 18px;
             }
             .header-box {
-                padding: 30px 15px;
-                margin-bottom: 25px;
-                border-radius: 16px;
+                padding: 35px 20px;
+                margin-bottom: 30px;
+                border-radius: 18px;
             }
             .header-box h2 {
-                font-size: 1.8em;
-                margin-bottom: 12px;
+                font-size: 2em;
+                margin-bottom: 15px;
             }
             .header-box p {
-                font-size: 0.95em;
-                margin: 8px 0;
-            }
-            h1 {
-                font-size: 1.4em;
-                margin-bottom: 20px;
-                padding-bottom: 15px;
+                font-size: 1em;
+                margin: 10px 0;
             }
             h2 {
-                font-size: 1.1em;
-                margin-top: 30px;
-                margin-bottom: 18px;
+                font-size: 1.2em;
+                margin-top: 35px;
+                margin-bottom: 20px;
             }
             label {
-                font-size: 0.95em;
-                margin-bottom: 8px;
+                font-size: 0.98em;
+                margin-bottom: 10px;
             }
             input[type="text"],
             input[type="email"],
             textarea {
-                padding: 12px;
-                margin-bottom: 20px;
-                font-size: 1em;
-                border-radius: 10px;
+                padding: 14px;
+                margin-bottom: 22px;
+                font-size: 1.02em;
+                border-radius: 11px;
             }
             .radio-options {
                 flex-direction: column;
-                gap: 12px;
-                padding: 15px;
-                margin-bottom: 25px;
+                gap: 15px;
+                padding: 18px;
+                margin-bottom: 28px;
+                border-radius: 12px;
             }
             .radio-options label {
-                font-size: 0.95em;
+                font-size: 0.98em;
             }
             button[type="submit"] {
-                padding: 14px 20px;
-                font-size: 1.05em;
-                margin-top: 10px;
+                padding: 16px 25px;
+                font-size: 1.08em;
+                border-radius: 13px;
+                margin-top: 15px;
             }
             #message-container {
-                margin: 20px -12px;
-                padding: 0 12px;
+                margin: 25px auto;
             }
             #message-container p {
-                padding: 18px 15px;
-                font-size: 0.95em;
+                padding: 20px;
+                font-size: 1em;
+                border-radius: 12px;
             }
         }
 
         @media (max-width: 480px) {
             body {
-                padding: 8px;
+                padding: 10px;
             }
             .content-container {
-                padding: 0;
+                max-width: 100%;
+            }
+            form {
+                padding: 18px;
+                border-radius: 16px;
+            }
+            .header-box {
+                padding: 25px 15px;
+                margin-bottom: 20px;
+                border-radius: 16px;
+            }
+            .header-box h2 {
+                font-size: 1.7em;
+                margin-bottom: 12px;
+                letter-spacing: 0.5px;
+            }
+            .header-box p {
+                font-size: 0.92em;
+                line-height: 1.6;
+                margin: 8px 0;
+            }
+            h2 {
+                font-size: 1.1em;
+                margin-top: 28px;
+                margin-bottom: 16px;
+                padding-bottom: 10px;
+            }
+            label {
+                font-size: 0.93em;
+                margin-bottom: 8px;
+                font-weight: 700;
+            }
+            input[type="text"],
+            input[type="email"],
+            textarea {
+                padding: 12px;
+                margin-bottom: 18px;
+                font-size: 0.98em;
+                border-radius: 10px;
+                border-width: 2px;
+            }
+            textarea {
+                min-height: 100px;
+            }
+            .radio-options {
+                flex-direction: column;
+                gap: 12px;
+                padding: 15px;
+                margin-bottom: 22px;
+                border-radius: 10px;
+            }
+            .radio-options label {
+                font-size: 0.93em;
+                gap: 8px;
+            }
+            button[type="submit"] {
+                padding: 15px 20px;
+                font-size: 1.04em;
+                border-radius: 12px;
+                margin-top: 12px;
+                font-weight: 700;
+            }
+            #message-container {
+                margin: 20px -10px;
+                padding: 0 10px;
+            }
+            #message-container p {
+                padding: 16px 12px;
+                font-size: 0.95em;
+                border-radius: 10px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            body {
+                padding: 8px;
             }
             form {
                 padding: 15px;
-                margin: 0 -8px;
             }
             .header-box {
                 padding: 20px 12px;
-                margin-bottom: 20px;
+                margin-bottom: 18px;
             }
             .header-box h2 {
                 font-size: 1.5em;
             }
             .header-box p {
-                font-size: 0.9em;
-                line-height: 1.5;
-            }
-            h1 {
-                font-size: 1.25em;
-                margin-bottom: 15px;
+                font-size: 0.88em;
             }
             h2 {
                 font-size: 1em;
-                margin-top: 25px;
+                margin-top: 24px;
             }
             label {
                 font-size: 0.9em;
@@ -357,16 +424,12 @@
             input[type="text"],
             input[type="email"],
             textarea {
-                padding: 10px;
-                margin-bottom: 15px;
+                padding: 11px;
+                margin-bottom: 16px;
                 font-size: 0.95em;
             }
-            .radio-options {
-                padding: 12px;
-                gap: 10px;
-            }
             button[type="submit"] {
-                padding: 12px 15px;
+                padding: 13px 18px;
                 font-size: 1em;
             }
         }
@@ -377,7 +440,7 @@
     <div class="content-container">
 
         <div class="header-box">
-            <h2>💗 ספר גדול על פגים קטנים 💗</h2>
+            <h2>💗 הסיפור שלנו בפגייה</h2>
             <p style="font-weight: bold; font-size: 1.15em;">מיזם של דיקלה ויגאל גולד, מתנדבים בעמותת לה"ב</p>
             <p>אנחנו אוספים סיפורים אישיים מהורים שעברו לידה מוקדמת, כדי ליצור ספר דיגיטלי שיחזק ויעודד הורים שמגיעים היום לראשונה לפגייה. נשמח מאוד לשתף גם את הסיפור שלכם — במלואו או באופן אנונימי, לפי בחירתכם.</p>
         </div>
