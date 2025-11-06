@@ -21,7 +21,7 @@
             background: linear-gradient(180deg, #0A3A42 0%, #0D5A68 50%, #116B78 100%);
             background-attachment: fixed;
             font-family: 'Varela Round', sans-serif;
-            color: #FFF; /* כל הטקסט באתר יהיה לבן */
+            color: #FFF; /* כל הטקסט באתר כברירת מחדל יהיה לבן */
             direction: rtl;
             overflow-x: hidden;
         }
@@ -100,9 +100,10 @@
             text-align: center;
         }
         
+        /* שינוי עיקרי: ודא שכל הפסקאות בתוך ה-header הן לבנות */
         .header p {
             font-size: 0.95em;
-            color: rgba(255, 255, 255, 0.95); /* נשמר, כדי לאפשר שקיפות קלה אם תרצה */
+            color: #FFF; 
             margin-bottom: 12px;
         }
         
@@ -110,7 +111,7 @@
         .header .goal-title {
             font-size: 1.05em;
             font-weight: 800;
-            color: #FFF; /* נשמר לצבע לבן מובהק */
+            color: #FFF; 
             margin-top: 20px;
             margin-bottom: 5px;
             border-right: 4px solid #A0E4F0; 
@@ -139,10 +140,7 @@
             border-top: 1px solid rgba(77, 173, 181, 0.3);
             font-size: 0.9em;
             text-align: center;
-        }
-        
-        .header .contact-info p {
-            margin: 5px 0;
+            color: #FFF; /* ודא שגם אזור יצירת הקשר לבן */
         }
 
         /* מכל הטופס */
@@ -254,6 +252,7 @@
         .radio-item label {
             margin: 0;
             font-size: 0.9em;
+            color: #FFF; /* ודא שכפתורי הרדיו לבנים */
         }
 
 
@@ -362,7 +361,7 @@
             <div class="contact-info">
                 <p>תודה על שיתוף הפעולה!</p>
                 <p>📞 <strong>דיקלה 0525238282</strong> | 📞 <strong>יגאל 0528119587</strong></p>
-                <p style="font-size: 0.75em; color: rgba(255, 255, 255, 0.7);">( מנהלי קבוצות אמהות ואבות לפגים - עמותת לה"ב )</p>
+                <p style="font-size: 0.75em; color: #FFF; opacity: 0.7;">( מנהלי קבוצות אמהות ואבות לפגים - עמותת לה"ב )</p>
             </div>
         </div>
 
@@ -441,10 +440,12 @@
                     </div>
                     <div class="form-group">
                         <label for="siblings">אם יש ילדים אחרים בבית, כיצד התנהלתם:</label>
-                        <textarea id="siblings" name="התנהלות עם ילדים נוספים"></textarea> </div>
+                        <textarea id="siblings" name="התנהלות עם ילדים נוספים"></textarea> 
+                    </div>
                     <div class="form-group">
                         <label for="mediation">איך הסברתם להם את המצב?</label>
-                        <textarea id="mediation" name="תיווך לילדים"></textarea> </div>
+                        <textarea id="mediation" name="תיווך לילדים"></textarea> 
+                    </div>
                     <div class="form-group">
                         <label for="crisis">רגעי משבר קשים (שאפשר לשתף):</label>
                         <textarea id="crisis" name="רגעי משבר" required></textarea>
