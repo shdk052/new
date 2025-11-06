@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     
     <style>
-        /* (כל סגנונות ה-CSS נשמרו כפי שסוכם) */
+        /* (כל סגנונות ה-CSS הקודמים נשמרו כפי שסוכם) */
         
         /* איפוס בסיסי והגדרות גלובליות */
         * {
@@ -195,7 +195,7 @@
             display: block;
             font-size: 0.9em;
             font-weight: 700;
-            color: #FFF; /* ודא שכל התוויות (Labels) בטופס לבנות */
+            color: #FFF; 
             margin-bottom: 8px;
         }
 
@@ -207,7 +207,7 @@
             border: 2px solid #2B8C96;
             border-radius: 10px;
             background: rgba(232, 244, 246, 0.9);
-            color: #0A3A42; /* נשאר כהה בפנים כדי שיהיה קריא */
+            color: #0A3A42; 
             font-family: 'Varela Round', sans-serif;
             font-size: 0.9em;
             -webkit-appearance: none;
@@ -221,6 +221,15 @@
             background: rgba(255, 255, 255, 0.08);
             color: #FFF;
             border: 2px solid #2B8C96;
+        }
+        
+        /* סגנון נוסף להודעת העלאה */
+        .upload-warning {
+            font-size: 0.8em; 
+            opacity: 0.9; 
+            color: #FFC107; /* צהוב אזהרה */
+            margin-top: 10px;
+            font-weight: 700;
         }
 
         input:focus,
@@ -264,7 +273,7 @@
         .radio-item label {
             margin: 0;
             font-size: 0.9em;
-            color: #FFF; /* ודא שכפתורי הרדיו לבנים */
+            color: #FFF; 
         }
 
 
@@ -285,11 +294,18 @@
             margin-top: 15px;
         }
 
-        button[type="submit"]:active {
+        button[type="submit"]:active:not(:disabled) {
             transform: scale(0.98);
             box-shadow: 0 3px 10px rgba(77, 173, 181, 0.6);
         }
         
+        /* סגנון כפתור מושבת (בזמן טעינה) */
+        button[type="submit"]:disabled {
+            background: #4DADB5;
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
         /* Message */
         .message {
             padding: 12px;
@@ -496,11 +512,14 @@
                     <div class="form-group">
                         <label for="photo_today">תמונה 2: הילד/ה היום</label>
                         <input type="file" id="photo_today" name="תמונה - היום" accept="image/*">
+                        <p class="upload-warning">
+                            ⚠️ חשוב: העלאת תמונות עלולה לקחת **דקה או שתיים**. אנא לחצו על "שלח" **פעם אחת** והמתינו בסבלנות עד לקבלת הודעת האישור הירוקה.
+                        </p>
                         <p style="font-size: 0.8em; opacity: 0.7; margin-top: 5px;">(שימו לב: כל קובץ מוגבל ל-8MB)</p>
                     </div>
                 </div>
 
-                <button type="submit">שלח את הסיפור 📤</button>
+                <button type="submit" id="submit-button">שלח את הסיפור 📤</button>
             </form>
         </div>
     </div>
@@ -508,6 +527,7 @@
     <script>
         const form = document.getElementById('form');
         const messageDiv = document.getElementById('message');
+        const submitButton = document.getElementById('submit-button');
         
         // Netlify Forms מפנה חזרה לאותו דף עם פרמטר success, כך שקוד ה-JS הזה יציג את הודעת ההצלחה.
         const params = new URLSearchParams(window.location.search);
@@ -523,6 +543,14 @@
             messageDiv.className = 'message error';
             messageDiv.textContent = '❌ שגיאה בשליחה. אנא נסו שנית או צרו קשר ישירות.';
         }
+
+        // *** פונקציה למניעת לחיצות חוזרות בזמן העלאה ***
+        form.addEventListener('submit', function() {
+            // משנה את הטקסט, משבית את הכפתור ומציג הודעת טעינה
+            submitButton.textContent = '...מעלה קבצים, אנא המתן';
+            submitButton.disabled = true;
+        });
+
     </script>
 </body>
 </html>
