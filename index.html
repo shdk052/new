@@ -21,7 +21,7 @@
             background: linear-gradient(180deg, #0A3A42 0%, #0D5A68 50%, #116B78 100%);
             background-attachment: fixed;
             font-family: 'Varela Round', sans-serif;
-            color: #FFF; /* כל הטקסט באתר כברירת מחדל יהיה לבן */
+            color: #FFF; /* הגדרת ברירת המחדל הכללית ללבן */
             direction: rtl;
             overflow-x: hidden;
         }
@@ -89,18 +89,18 @@
         }
         /* *** סוף סגנון הלוגו *** */
 
-        /* כותרת ראשית */
+        /* כותרת ראשית (שוּנָה ללבן) */
         .header h1 {
             font-size: 2.1em;
             font-weight: 900;
             margin-bottom: 25px; 
-            color: #A0E4F0; /* נשמר לצבע כותרת מיוחד */
+            color: #FFF; /* שונה מ-A0E4F0 ללבן */
             text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             letter-spacing: 1px;
             text-align: center;
         }
         
-        /* שינוי עיקרי: ודא שכל הפסקאות בתוך ה-header הן לבנות */
+        /* פסקאות בתוך ה-header (שוּנָה ללבן מובהק) */
         .header p {
             font-size: 0.95em;
             color: #FFF; 
@@ -114,7 +114,7 @@
             color: #FFF; 
             margin-top: 20px;
             margin-bottom: 5px;
-            border-right: 4px solid #A0E4F0; 
+            border-right: 4px solid #FFF; /* שונה מ-A0E4F0 ללבן */
             padding-right: 10px;
             display: inline-block;
         }
@@ -126,8 +126,9 @@
             font-weight: normal; 
         }
         
+        /* אייקונים (שוּנָה ללבן) */
         .header .list-item span.icon {
-            color: #A0E4F0;
+            color: #FFF; /* שונה מ-A0E4F0 ללבן */
             font-size: 1.2em;
             margin-left: 8px;
             flex-shrink: 0;
@@ -137,10 +138,10 @@
         .header .contact-info {
             margin-top: 25px;
             padding-top: 15px;
-            border-top: 1px solid rgba(77, 173, 181, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.3); /* שונה גם את הגבול ללבן עם שקיפות */
             font-size: 0.9em;
             text-align: center;
-            color: #FFF; /* ודא שגם אזור יצירת הקשר לבן */
+            color: #FFF; 
         }
 
         /* מכל הטופס */
@@ -166,7 +167,7 @@
         .section {
             margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 1px dashed rgba(77, 173, 181, 0.4);
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.4); /* שונה גם את הגבול ללבן עם שקיפות */
         }
 
         .section:last-of-type {
@@ -175,10 +176,11 @@
             padding-bottom: 0;
         }
 
+        /* כותרות מקטעי הטופס (שוּנָה ללבן) */
         .section-title {
             font-size: 1.1em;
             font-weight: 800;
-            color: #A0E4F0;
+            color: #FFF; /* שונה מ-A0E4F0 ללבן */
             margin-bottom: 15px;
             letter-spacing: 0.5px;
         }
@@ -191,7 +193,7 @@
             display: block;
             font-size: 0.9em;
             font-weight: 700;
-            color: #FFF; /* כל התוויות (Labels) בטופס יהיו לבנות */
+            color: #FFF; /* ודא שכל התוויות (Labels) בטופס לבנות */
             margin-bottom: 8px;
         }
 
@@ -203,7 +205,7 @@
             border: 2px solid #2B8C96;
             border-radius: 10px;
             background: rgba(232, 244, 246, 0.9);
-            color: #0A3A42;
+            color: #0A3A42; /* נשאר כהה בפנים כדי שיהיה קריא */
             font-family: 'Varela Round', sans-serif;
             font-size: 0.9em;
             -webkit-appearance: none;
@@ -229,7 +231,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            background: rgba(77, 173, 181, 0.08);
+            background: rgba(255, 255, 255, 0.08); /* שונה ללבן עם שקיפות קלה */
             padding: 15px;
             border: 1px solid #2B8C96;
             border-radius: 10px;
@@ -288,6 +290,7 @@
             margin-bottom: 15px;
             border: 2px solid;
             animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            color: #FFF; /* ודא שהודעת השגיאה/הצלחה היא לבנה */
         }
 
         @keyframes popIn {
@@ -298,7 +301,7 @@
         .message.success {
             background: rgba(0, 168, 120, 0.15);
             border-color: #00A878;
-            color: #B0E8D4;
+            color: #B0E8D4; /* ניתן להשאיר גוון בהיר או להחזיר ל-FFF */
         }
 
         /* מדיה קווריות */
@@ -339,9 +342,6 @@
             
             <p>אנחנו, יגאל ודיקלה גולד, הורים לעמית שנולד בשבוע 26 בהפתעה ומתנדבים בעמותת לה"ב</p>
             <p>לאחר הרבה שיחות עם הורים לפגים המוני פוסטים של סיפורי פגים 😃 ואינסוף שיחות עם רומי 😃חלמנו והינה מגשימים...</p>
-            
-            <p>אנחנו מזמינים אתכם להשתתף במיזם מיוחד</p>
-            <p>ספר דיגיטלי ומודפס שיאסוף סיפורים של הורים לפגים מכל רחבי הארץ ובכל גיל.</p>
             
             <p class="goal-title">המטרה שלנו:</p>
             <p>לתת כוח ותקווה להורים שנמצאים עכשיו בפגייה .. חלקם מבולבלים, עייפים, ושבורי לב.</p>
