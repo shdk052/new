@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     
     <style>
-        /* (כל סגנונות ה-CSS הקודמים נשמרו כפי שסוכם) */
+        /* (כל סגנונות ה-CSS הקודמים נשמרו, למעט שינויים ב-input[type="file"]) */
         
         /* איפוס בסיסי והגדרות גלובליות */
         * {
@@ -215,12 +215,38 @@
             transition: all 0.3s;
         }
         
-        /* סגנון לשדה העלאת קובץ */
+        /* הסתרת כפתור ברירת המחדל של הדפדפן - **שינוי מרכזי** */
         input[type="file"] {
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.08);
-            color: #FFF;
-            border: 2px solid #2B8C96;
+            /* הופך את השדה לשקוף ובלתי נראה */
+            opacity: 0;
+            position: absolute;
+            z-index: -1;
+            width: 0.1px;
+            height: 0.1px;
+            overflow: hidden;
+        }
+        
+        /* עיצוב ה Label שתשמש ככפתור - **שינוי מרכזי** */
+        .file-label {
+            display: block; /* לוקח את כל רוחב ההורה */
+            text-align: center;
+            padding: 12px 15px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9em;
+            cursor: pointer;
+            
+            /* סגנון כפתורי - צבע טורקיז עדין */
+            background: #4DADB5;
+            color: #0A3A42; 
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 5px; /* מרווח קטן מהכותרת מעליו */
+        }
+        
+        .file-label:hover {
+            background: #5dc2cb;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
         
         /* סגנון נוסף להודעת העלאה */
@@ -502,16 +528,25 @@
                 
                 <div class="section">
                     <div class="section-title">📸 תמונות מלוות (אופציונלי)</div>
-                    <p style="font-size: 0.9em; opacity: 0.9; margin-bottom: 10px;">צרפו תמונה מתקופת **הפגייה** ותמונה של הילד/ה **היום**:</p>
+                    <p style="font-size: 0.9em; opacity: 0.9; margin-bottom: 10px;">צרפו תמונה מתקופת הפגייה ותמונה של הילד/ה היום:</p>
 
                     <div class="form-group">
                         <label for="photo_pagiya">תמונה 1: מתקופת הפגייה</label>
                         <input type="file" id="photo_pagiya" name="תמונה - פגייה" accept="image/*">
+                        <label for="photo_pagiya" class="file-label">
+                            בחר קובץ לפגייה ⬆️
+                        </label>
+                        <span id="filename_pagiya" style="font-size: 0.8em; color: #A0E4F0; margin-top: 5px; display: block; text-align: center;"></span>
                     </div>
                     
                     <div class="form-group">
                         <label for="photo_today">תמונה 2: הילד/ה היום</label>
                         <input type="file" id="photo_today" name="תמונה - היום" accept="image/*">
+                        <label for="photo_today" class="file-label">
+                            בחר קובץ להיום 📸
+                        </label>
+                        <span id="filename_today" style="font-size: 0.8em; color: #A0E4F0; margin-top: 5px; display: block; text-align: center;"></span>
+                        
                         <p class="upload-warning">
                             ⚠️ חשוב: העלאת תמונות עלולה לקחת **דקה או שתיים**. אנא לחצו על "שלח" **פעם אחת** והמתינו בסבלנות עד לקבלת הודעת האישור הירוקה.
                         </p>
@@ -529,22 +564,45 @@
         const messageDiv = document.getElementById('message');
         const submitButton = document.getElementById('submit-button');
         
-        // Netlify Forms מפנה חזרה לאותו דף עם פרמטר success, כך שקוד ה-JS הזה יציג את הודעת ההצלחה.
+        // --- פונקציות לתצוגת שם הקובץ שנבחר והפעלת כפתור השליחה ---
+        
+        function updateFileName(inputId, filenameId) {
+            const input = document.getElementById(inputId);
+            const filenameDisplay = document.getElementById(filenameId);
+            const label = input.nextElementSibling;
+            
+            input.addEventListener('change', function() {
+                if (this.files && this.files.length > 0) {
+                    // הצגת שם הקובץ הנבחר
+                    filenameDisplay.textContent = `נבחר: ${this.files[0].name}`;
+                    // שינוי טקסט הכפתור
+                    label.textContent = 'שנה קובץ 🔄';
+                } else {
+                    filenameDisplay.textContent = '';
+                    label.textContent = (inputId === 'photo_pagiya') ? 'בחר קובץ לפגייה ⬆️' : 'בחר קובץ להיום 📸';
+                }
+            });
+        }
+        
+        // הפעלת הפונקציה לשני שדות הקבצים
+        updateFileName('photo_pagiya', 'filename_pagiya');
+        updateFileName('photo_today', 'filename_today');
+
+
+        // --- לוגיקה של שליחת טופס (שמירה על תיקון הטעינה) ---
+        
         const params = new URLSearchParams(window.location.search);
         const status = params.get('status');
 
         if (status === 'success') {
             messageDiv.className = 'message success';
             messageDiv.textContent = '✅ הטופס נשלח בהצלחה! תודה רבה על שיתוף הסיפור שלכם.';
-            // מנקה את ה-URL לניקיון
             setTimeout(() => window.history.replaceState(null, null, location.pathname), 500);
         } else if (status === 'error') {
-            // Netlify יכול לשלוח שגיאה
             messageDiv.className = 'message error';
             messageDiv.textContent = '❌ שגיאה בשליחה. אנא נסו שנית או צרו קשר ישירות.';
         }
 
-        // *** פונקציה למניעת לחיצות חוזרות בזמן העלאה ***
         form.addEventListener('submit', function() {
             // משנה את הטקסט, משבית את הכפתור ומציג הודעת טעינה
             submitButton.textContent = '...מעלה קבצים, אנא המתן';
