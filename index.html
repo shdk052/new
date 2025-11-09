@@ -469,6 +469,14 @@
                         <label for="song_why">למה בחרתם דווקא בשיר הזה?</label>
                         <textarea id="song_why" name="סיבת בחירת השיר" required></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="photo_symbol">בחרו תמונה/צילום (לא של התינוק) שמסמלת בשבילכם את תקופת הפגייה</label>
+                        <input type="file" id="photo_symbol" name="תמונה סימבולית - פגייה" accept="image/*">
+                        <label for="photo_symbol" class="file-label">
+                            בחר קובץ (תמונה)
+                        </label>
+                        <span id="filename_symbol" style="font-size: 0.8em; color: #A0E4F0; margin-top: 5px; display: block; text-align: center;"></span>
+                    </div>
                 </div>
 
                 <div class="section">
@@ -590,6 +598,7 @@
         // הפעלת הפונקציה לשני שדות הקבצים
         updateFileName('photo_pagiya', 'filename_pagiya');
         updateFileName('photo_today', 'filename_today');
+        updateFileName('photo_symbol', 'filename_symbol');
 
 
         // --- לוגיקה של שליחת טופס (שמירה על תיקון הטעינה) ---
