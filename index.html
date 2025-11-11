@@ -22,9 +22,110 @@
             background: linear-gradient(180deg, #D4C3E0 0%, #C4A8D8 50%, #CDB5E0 100%);
             background-attachment: fixed;
             font-family: 'Varela Round', sans-serif;
-            color: #FFF; /* הגדרת ברירת המחדל הכללית ללבן */
+            color: #FFF;
             direction: rtl;
             overflow-x: hidden;
+        }
+
+        /* מסך הטעינה */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #C9B1E0 0%, #B597D6 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOutLoading 0.5s ease-out 2.5s forwards;
+        }
+
+        @keyframes fadeOutLoading {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .loading-content {
+            text-align: center;
+            animation: slideUp 2s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .loading-logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .loading-title {
+            font-size: 2em;
+            font-weight: 900;
+            color: #FFF;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .loading-bar {
+            width: 200px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #E0C5F0, #FFF, #E0C5F0);
+            background-size: 200% 100%;
+            border-radius: 10px;
+            animation: progress 2s ease-in-out;
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        .loading-text {
+            margin-top: 20px;
+            font-size: 0.95em;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInOut 2s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
         }
 
         /* מכל שמרכז את התוכן ודואג לגלילה אנכית */
@@ -382,6 +483,18 @@
     </style>
 </head>
 <body>
+    <!-- מסך הטעינה -->
+    <div class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">👶</div>
+            <div class="loading-title">ספר גדול על פגים קטנים</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <div class="loading-text">טוען...</div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="header">
             <div class="logo">
@@ -556,65 +669,4 @@
 
                     <div class="form-group">
                         <label for="photo_pagiya">תמונה 1: מתקופת הפגייה</label>
-                        <input type="file" id="photo_pagiya" name="תמונה - פגייה" accept="image/*">
-                        <label for="photo_pagiya" class="file-label">
-                            בחר קובץ לפגייה ⬆️
-                        </label>
-                        <span id="filename_pagiya" style="font-size: 0.8em; color: #D4B5E8; margin-top: 5px; display: block; text-align: center;"></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="photo_today">תמונה 2: הילד/ה היום</label>
-                        <input type="file" id="photo_today" name="תמונה - היום" accept="image/*">
-                        <label for="photo_today" class="file-label">
-                            בחר קובץ להיום 📸
-                        </label>
-                        <span id="filename_today" style="font-size: 0.8em; color: #D4B5E8; margin-top: 5px; display: block; text-align: center;"></span>
-                        
-                        <p class="upload-warning">
-                            ⚠️ חשוב: העלאת תמונות עלולה לקחת דקה או שתיים. אנא לחצו על "שלח" פעם אחת והמתינו בסבלנות עד לקבלת הודעת האישור הירוקה.
-                        </p>
-                        <p style="font-size: 0.8em; opacity: 0.7; margin-top: 5px;">(שימו לב: כל קובץ מוגבל ל-8MB)</p>
-                    </div>
-                </div>
-
-                <button type="submit" id="submit-button">שלח את הסיפור 📤</button>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        const form = document.getElementById('form');
-        const messageDiv = document.getElementById('message');
-        const submitButton = document.getElementById('submit-button');
-        
-        // --- פונקציות לתצוגת שם הקובץ שנבחר והפעלת כפתור השליחה ---
-        
-        function updateFileName(inputId, filenameId) {
-            const input = document.getElementById(inputId);
-            const filenameDisplay = document.getElementById(filenameId);
-            const label = input.nextElementSibling;
-            
-            input.addEventListener('change', function() {
-                if (this.files && this.files.length > 0) {
-                    // הצגת שם הקובץ הנבחר
-                    filenameDisplay.textContent = `נבחר: ${this.files[0].name}`;
-                    // שינוי טקסט הכפתור
-                    label.textContent = 'שנה קובץ 🔄';
-                } else {
-                    filenameDisplay.textContent = '';
-                    label.textContent = (inputId === 'photo_pagiya') ? 'בחר קובץ לפגייה ⬆️' : 'בחר קובץ להיום 📸';
-                }
-            });
-        }
-        
-        // הפעלת הפונקציה לשני שדות הקבצים
-        updateFileName('photo_pagiya', 'filename_pagiya');
-        updateFileName('photo_today', 'filename_today');
-        updateFileName('photo_symbol', 'filename_symbol');
-
-
-        // --- לוגיקה של שליחת טופס (שמירה על תיקון הטעינה) ---
-        
-        const params = new URLSearchParams(window.location.search);
-        const
+                        <input type="file" id="photo_pagiya" name="תמ
