@@ -359,20 +359,23 @@
         
         /* עיצוב ה Label שתשמש ככפתור - **שינוי מרכזי** */
         .file-label {
-            display: block; /* לוקח את כל רוחב ההורה */
+            display: inline-block;
             text-align: center;
             padding: 12px 15px;
             border-radius: 10px;
             font-weight: 700;
             font-size: 0.9em;
             cursor: pointer;
+            width: 100%;
             
             /* סגנון כפתורי - צבע סגלגל בהיר */
             background: #D4B5E8;
             color: #6B3D9B; 
             transition: background 0.2s, box-shadow 0.2s;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            margin-top: 5px; /* מרווח קטן מהכותרת מעליו */
+            margin-top: 5px;
+            margin-bottom: 8px;
+            box-sizing: border-box;
         }
         
         .file-label:hover {
