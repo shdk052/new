@@ -1,14 +1,13 @@
-
+<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ספר גדול על פגים קטנים</title>
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-   
+    
+
     <style>
-        /* (כל סגנונות ה-CSS הקודמים נשמרו, למעט שינויים ב-input[type="file"]) */
-       
         /* איפוס בסיסי והגדרות גלובליות */
         * {
             margin: 0;
@@ -16,14 +15,84 @@
             box-sizing: border-box;
         }
 
-        /* גוף הדף - רקע וגופן */
+        /* ------------------------------------- */
+        /* ✅ סגנון מסך הטעינה (מותאם צבע) */
+        /* ------------------------------------- */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #116B78 0%, #0D5A68 100%); /* כחול/טורקיז */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOutLoading 0.5s ease-out 2.5s forwards;
+        }
+
+        @keyframes fadeOutLoading {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .loading-content {
+            text-align: center;
+            animation: slideUp 2s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .loading-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .loading-title {
+            font-size: 1.8em;
+            font-weight: 900;
+            color: #FFF;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ------------------------------------- */
+        /* ✅ סגנון גוף הדף ו-container (מעודכן) */
+        /* ------------------------------------- */
         html, body {
             width: 100%;
             min-height: 100vh;
+            /* רקע כחול/טורקיז מהקוד השני */
             background: linear-gradient(180deg, #0A3A42 0%, #0D5A68 50%, #116B78 100%);
             background-attachment: fixed;
             font-family: 'Varela Round', sans-serif;
-            color: #FFF; /* הגדרת ברירת המחדל הכללית ללבן */
+            color: #FFF; 
             direction: rtl;
             overflow-x: hidden;
         }
@@ -38,9 +107,12 @@
             flex-direction: column;
             gap: 20px;
         }
-       
-        /* אזור הכותרת וההקדמה */
+        
+        /* ------------------------------------- */
+        /* ✅ סגנון Header (מעודכן צבע) */
+        /* ------------------------------------- */
         .header {
+            /* רקע כחול/טורקיז מהקוד השני */
             background: linear-gradient(135deg, #0F5A68 0%, #084A55 100%);
             border-radius: 18px;
             padding: 25px 20px;
@@ -57,7 +129,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* אפקט הברק בכותרת */
+        /* אפקט הברק בכותרת (מעודכן צבע) */
         .header::before {
             content: '';
             position: absolute;
@@ -65,6 +137,7 @@
             left: 0;
             right: 0;
             bottom: 0;
+            /* אפקט ברק בטורקיז בהיר */
             background: linear-gradient(45deg, transparent 30%, rgba(77, 173, 181, 0.1) 50%, transparent 70%);
             animation: shimmer 3s infinite;
             pointer-events: none;
@@ -73,84 +146,109 @@
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
         }
-       
+        
         /* *** סגנון הלוגו *** */
         .logo {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 25px; 
         }
 
         .logo img {
-            max-width: 250px;
-            width: 60%;
+            max-width: 250px; 
+            width: 60%; 
             height: auto;
             display: inline-block;
-            background-color: white;
+            background-color: white; 
             padding: 8px 15px;
             border-radius: 6px;
         }
         /* *** סוף סגנון הלוגו *** */
 
-        /* כותרת ראשית (שוּנָה ללבן) */
+        /* כותרת ראשית - הוסר אפקט ה-glow אבל נשאר העיצוב הכללי */
         .header h1 {
-            font-size: 2.1em;
+            font-size: 2.4em; /* החזרתי ל-2.4em מהקוד הראשון לטובת הדגשה */
             font-weight: 900;
-            margin-bottom: 25px;
-            color: #FFF;
+            margin-bottom: 25px; 
+            color: #FFF; 
             text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             letter-spacing: 1px;
             text-align: center;
         }
-       
-        /* פסקאות בתוך ה-header (שוּנָה ללבן מובהק) */
+        
+        /* פסקאות בתוך ה-header */
         .header p {
             font-size: 0.95em;
-            color: #FFF;
+            color: #FFF; 
             margin-bottom: 12px;
         }
-       
-        /* עיצוב מטרות - צבע לבן */
+        
+        /* עיצוב מטרות */
         .header .goal-title {
             font-size: 1.05em;
             font-weight: 800;
-            color: #FFF;
+            color: #FFF; 
             margin-top: 20px;
             margin-bottom: 5px;
-            border-right: 4px solid #FFF;
+            border-right: 4px solid #FFF; 
             padding-right: 10px;
             display: inline-block;
         }
-       
+        
         .header .list-item {
             margin-top: 10px;
             display: flex;
             align-items: flex-start;
-            font-weight: normal;
+            font-weight: normal; 
         }
-       
-        /* אייקונים (שוּנָה ללבן) */
+        
+        /* אייקונים */
         .header .list-item span.icon {
-            color: #FFF;
+            color: #FFF; 
             font-size: 1.2em;
             margin-left: 8px;
             flex-shrink: 0;
         }
-       
+        
         /* עיצוב קריאה לפעולה */
         .header .contact-info {
             margin-top: 25px;
             padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.3); 
             font-size: 0.9em;
             text-align: center;
-            color: #FFF;
+            color: #FFF; 
         }
 
-        /* מכל הטופס */
+        /* ✅ כפתור WhatsApp */
+        .whatsapp-btn {
+            display: inline-block;
+            background: #25D366;
+            color: #FFF;
+            padding: 10px 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85em;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            margin: 5px;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1ead50;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.6);
+        }
+
+        /* ------------------------------------- */
+        /* ✅ סגנון טופס (מעודכן צבע) */
+        /* ------------------------------------- */
         .form-container {
+            /* רקע כחול/טורקיז מהקוד השני */
             background: linear-gradient(135deg, #0F5A68 0%, #074050 100%);
             border-radius: 18px;
             padding: 20px;
+            /* גבול בטורקיז בהיר יותר */
             border: 2px solid #2B8C96;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 2px 0 rgba(77, 173, 181, 0.1);
             animation: slideInUp 0.7s ease-out 0.1s both;
@@ -169,7 +267,7 @@
         .section {
             margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.4); 
         }
 
         .section:last-of-type {
@@ -178,11 +276,11 @@
             padding-bottom: 0;
         }
 
-        /* כותרות מקטעי הטופס (שוּנָה ללבן) */
+        /* כותרות מקטעי הטופס */
         .section-title {
             font-size: 1.1em;
             font-weight: 800;
-            color: #FFF;
+            color: #FFF; 
             margin-bottom: 15px;
             letter-spacing: 0.5px;
         }
@@ -195,7 +293,7 @@
             display: block;
             font-size: 0.9em;
             font-weight: 700;
-            color: #FFF;
+            color: #FFF; 
             margin-bottom: 8px;
         }
 
@@ -204,20 +302,22 @@
         textarea {
             width: 100%;
             padding: 12px;
+            /* גבול בטורקיז בהיר */
             border: 2px solid #2B8C96;
             border-radius: 10px;
+            /* רקע בהיר לכתיבה */
             background: rgba(232, 244, 246, 0.9);
-            color: #0A3A42;
+            /* צבע טקסט כחול כהה */
+            color: #0A3A42; 
             font-family: 'Varela Round', sans-serif;
             font-size: 0.9em;
             -webkit-appearance: none;
             appearance: none;
             transition: all 0.3s;
         }
-       
-        /* הסתרת כפתור ברירת המחדל של הדפדפן - **שינוי מרכזי** */
+        
+        /* הסתרת כפתור ברירת המחדל של הדפדפן */
         input[type="file"] {
-            /* הופך את השדה לשקוף ובלתי נראה */
             opacity: 0;
             position: absolute;
             z-index: -1;
@@ -225,44 +325,53 @@
             height: 0.1px;
             overflow: hidden;
         }
-       
-        /* עיצוב ה Label שתשמש ככפתור - **שינוי מרכזי** */
+        
+        /* עיצוב ה Label שתשמש ככפתור (מעודכן צבע) */
         .file-label {
-            display: block; /* לוקח את כל רוחב ההורה */
+            display: block;
             text-align: center;
             padding: 12px 15px;
             border-radius: 10px;
             font-weight: 700;
             font-size: 0.9em;
             cursor: pointer;
-           
             /* סגנון כפתורי - צבע טורקיז עדין */
             background: #4DADB5;
-            color: #0A3A42;
+            color: #0A3A42; 
             transition: background 0.2s, box-shadow 0.2s;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            margin-top: 5px; /* מרווח קטן מהכותרת מעליו */
+            margin-top: 5px;
         }
-       
+        
         .file-label:hover {
-            background: #5dc2cb;
+            background: #5dc5ce;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
-       
+        
         /* סגנון נוסף להודעת העלאה */
         .upload-warning {
-            font-size: 0.8em;
-            opacity: 0.9;
-            color: #FFC107; /* צהוב אזהרה */
+            font-size: 0.8em; 
+            opacity: 0.9; 
+            color: #FFC107;
             margin-top: 10px;
             font-weight: 700;
         }
+        
+        /* הודעת שם קובץ שנבחר */
+        .filename-display {
+            font-size: 0.85em;
+            color: #A0FFA0; 
+            margin-top: 5px;
+            display: block;
+        }
+
 
         input:focus,
         textarea:focus {
             outline: none;
-            border-color: #4DADB5;
+            border-color: #2B8C96;
             background: white;
+            /* אפקט פוקוס בטורקיז עדין */
             box-shadow: 0 0 0 3px rgba(77, 173, 181, 0.3);
         }
 
@@ -276,8 +385,10 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            background: rgba(255, 255, 255, 0.08);
+            /* רקע עדין */
+            background: rgba(255, 255, 255, 0.08); 
             padding: 15px;
+            /* גבול בטורקיז בהיר */
             border: 1px solid #2B8C96;
             border-radius: 10px;
         }
@@ -292,22 +403,24 @@
         input[type="radio"] {
             width: 19px;
             height: 19px;
-            accent-color: #4DADB5;
+            /* צבע הדגשה טורקיז בהיר */
+            accent-color: #2B8C96;
             cursor: pointer;
         }
-       
+        
         .radio-item label {
             margin: 0;
             font-size: 0.9em;
-            color: #FFF;
+            color: #FFF; 
         }
 
 
-        /* Submit Button */
+        /* Submit Button (מעודכן צבע) */
         button[type="submit"] {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #A0E4F0 0%, #4DADB5 100%);
+            /* רקע כפתור טורקיז בהיר לטקסט כהה */
+            background: linear-gradient(135deg, #4DADB5 0%, #2B8C96 100%);
             color: #0A3A42;
             border: none;
             border-radius: 10px;
@@ -315,24 +428,32 @@
             font-weight: 800;
             font-family: 'Varela Round', sans-serif;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(77, 173, 181, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
             transition: all 0.3s;
             margin-top: 15px;
         }
 
-        button[type="submit"]:active:not(:disabled) {
-            transform: scale(0.98);
-            box-shadow: 0 3px 10px rgba(77, 173, 181, 0.6);
-        }
-       
-        /* סגנון כפתור מושבת (בזמן טעינה) */
-        button[type="submit"]:disabled {
-            background: #4DADB5;
-            opacity: 0.7;
-            cursor: not-allowed;
+        button[type="submit"]:hover:not(:disabled) {
+            background: linear-gradient(135deg, #5dc5ce 0%, #3a97a1 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
         }
 
-        /* Message */
+        button[type="submit"]:active:not(:disabled) {
+            transform: scale(0.98);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+        }
+        
+        /* סגנון כפתור מושבת (בזמן טעינה) */
+        button[type="submit"]:disabled {
+            background: #2B8C96;
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Message (מעודכן צבע) */
         .message {
             padding: 12px;
             border-radius: 9px;
@@ -342,7 +463,7 @@
             margin-bottom: 15px;
             border: 2px solid;
             animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            color: #FFF;
+            color: #FFF; 
         }
 
         @keyframes popIn {
@@ -351,9 +472,16 @@
         }
 
         .message.success {
+            /* הצלחה בירוק/טורקיז עדין */
             background: rgba(0, 168, 120, 0.15);
             border-color: #00A878;
-            color: #B0E8D4;
+            color: #B0E8D4; 
+        }
+        
+        .message.error {
+            background: rgba(255, 0, 0, 0.15);
+            border-color: #FF4444;
+            color: #FFC0C0; 
         }
 
         /* מדיה קווריות */
@@ -371,62 +499,67 @@
                 font-size: 0.9em;
             }
             .logo img {
-                max-width: 150px;
+                max-width: 150px; 
             }
         }
     </style>
 </head>
 <body>
+    <div class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">👶</div>
+            <div class="loading-title">ספר גדול על פגים קטנים</div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="header">
             <div class="logo">
                 <img src="pink_logo.jpeg" alt="לוגו עמותת להב">
             </div>
-           
+            
             <h1>ספר גדול על פגים קטנים</h1>
-           
-
-           
+            
             <p>הורים לפגים?! </p>
             <p>איך חוויתם את תקופת הפגייה? </p>
-            <p>מה עזר לכם להתמודד? <p/>
+            <p>מה עזר לכם להתמודד? </p>
             <p>מה הייתם רוצים להגיד להורים שנמצאים שם עכשיו? </p>
-           
+            
             <p>נעים מאוד,</p>
             <p>אנחנו, יגאל ודיקלה גולד, הורים לעמית שנולד בשבוע 26 בהפתעה, ומתנדבים בעמותת לה"ב. </p>
             <p>לאחר הרבה שיחות עם הורים לפגים, </p>
              <p>המוני פוסטים של סיפורי פגים, </p>
             <p>ואינסוף שיחות עם רומי.. חלמנו, והינה מגשימים... </p>
             <p>ספר גדול על פגים קטנים יוצא לדרך!!! </p>
-           
+            
             <p class="goal-title">המטרה שלנו:</p>
-           
+            
             <div class="list-item"><span class="icon">✅</span> <strong>לתת מקום לסיפור שלכם</strong></div>
             <p style="margin-right: 20px;">לכאב, לגבורה, לאהבה, לנס, לדמעות ולצחוק.</p>
-           
+            
             <div class="list-item"><span class="icon">✅</span> <strong>להעלות את המודעות ללידות מוקדמות</strong></div>
             <p style="margin-right: 20px;">ולספר לעולם על הפגים הקטנים שהם גיבורים גדולים..</p>
 
             <div class="list-item"><span class="icon">✅</span> <strong></strong>הסיפור שלכם יתן כוח להורים אחרים שנמצאים באותו מצב...</div>
-           
+            
             <div class="contact-info">
                 <p>תודה על שיתוף הפעולה!</p>
-                <p>
-                    📞 <strong><a href="https://wa.me/972525238282" target="_blank" style="color: inherit; text-decoration: none;">דיקלה 0525238282</a></strong> |
-                    📞 <strong><a href="https://wa.me/972528119587" target="_blank" style="color: inherit; text-decoration: none;">יגאל 0528119587</a></strong>
-                </p>
-                <p style="font-size: 0.75em; color: #FFF; opacity: 0.7;">( מנהלי קבוצות אמהות ואבות לפגים - עמותת לה"ב )</p>
+                <div>
+                    <a href="https://wa.me/972525238282" target="_blank" class="whatsapp-btn">💬 דיקלה 0525238282</a>
+                    <a href="https://wa.me/972528119587" target="_blank" class="whatsapp-btn">💬 יגאל 0528119587</a>
+                </div>
+                <p style="font-size: 0.75em; color: #FFF; opacity: 0.7; margin-top: 15px;">( מנהלי קבוצות אמהות ואבות לפגים - עמותת לה"ב )</p>
             </div>
 
         </div>
 
         <div class="form-container">
-            <div id="message"></div>
-           
+            <div id="message"></div> 
+            
             <form id="form" name="premie-book-form" method="POST" action="/?status=success" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data">
-               
+                
                 <input type="hidden" name="form-name" value="premie-book-form" />
-               
+                
                 <input type="hidden" name="bot-field" />
 
                 <div class="section">
@@ -437,12 +570,12 @@
                             <label for="r1">בשמי המלא ללא כתובת אימייל וטלפון </label>
                         </div>
                         <div class="radio-item">
-                            <input type="radio" id="r1" name="אופן שיתוף הסיפור" value="בשם מלא כולל כתובת" required>
-                            <label for="r1">בשמי המלא כולל כתובת אימייל וטלפון (לטובת משפחות שיקראו את הספר ויצרו קשר ישיר)</label>
+                            <input type="radio" id="r2" name="אופן שיתוף הסיפור" value="בשם מלא כולל כתובת" required>
+                            <label for="r2">בשמי המלא כולל כתובת אימייל וטלפון (לטובת משפחות שיקראו את הספר ויצרו קשר ישיר)</label>
                         </div>
                         <div class="radio-item">
-                            <input type="radio" id="r2" name="אופן שיתוף הסיפור" value="אנונימי" required>
-                            <label for="r2">אנונימי </label>
+                            <input type="radio" id="r3" name="אופן שיתוף הסיפור" value="אנונימי" required>
+                            <label for="r3">אנונימי </label>
                         </div>
                     </div>
                 </div>
@@ -454,11 +587,11 @@
                         <input type="text" id="name" name="שם מלא" required>
                     </div>
                     <div class="form-group">
-                        <label for="contact">טלפון:</label>
+                        <label for="phone">טלפון:</label>
                         <input type="text" id="phone" name="טלפון" required>
                     </div>
                     <div class="form-group">
-                        <label for="contact">אימייל:</label>
+                        <label for="email">אימייל:</label>
                         <input type="text" id="email" name="אימייל" required>
                     </div>
                 </div>
@@ -479,11 +612,11 @@
                         <label for="photo_symbol" class="file-label">
                             בחר קובץ (תמונה)
                         </label>
-                        <span id="filename_symbol" style="font-size: 0.8em; color: #A0E4F0; margin-top: 5px; display: block; text-align: center;"></span>
+                        <span id="filename_symbol" class="filename-display"></span>
                     </div>
                     <div class="form-group">
-                        <label for="song_why">למה בחרתם  בתמונה הזו?</label>
-                        <textarea id="song_why" name="סיבת בחירת השיר" required></textarea>
+                        <label for="photo_symbol_why">למה בחרתם בתמונה הזו?</label>
+                        <textarea id="photo_symbol_why" name="סיבת בחירת התמונה הסימבולית" required></textarea>
                     </div>
                 </div>
 
@@ -511,11 +644,11 @@
                     </div>
                     <div class="form-group">
                         <label for="siblings">אם היו עוד ילדים בבית – איך התנהלתם בתקופה הזו, ומה חשוב בעיניכם לשים לב אליו?</label>
-                        <textarea id="siblings" name="התנהלות עם ילדים נוספים"></textarea>
+                        <textarea id="siblings" name="התנהלות עם ילדים נוספים"></textarea> 
                     </div>
                     <div class="form-group">
                         <label for="mediation">איך תיווכתם להם את זה שלא ניתן לראות את התינוק שזה עתה נולד?</label>
-                        <textarea id="mediation" name="תיווך לילדים"></textarea>
+                        <textarea id="mediation" name="תיווך לילדים"></textarea> 
                     </div>
                     <div class="form-group">
                         <label for="crisis">ספרו על רגעי משבר שהיו לכם.</label>
@@ -537,14 +670,13 @@
                         <label for="advice">מה הייתם רוצים לשמוע כשהייתם בפגייה?</label>
                         <textarea id="advice" name="מה הייתם רוצים שיגידו לכם" required></textarea>
                     </div>
-                   
+                    
                     <div class="form-group">
                         <label for="now_and_then">אז והיום - תארו את הדרך שעברתם בשנים האחרונות עם הילד/ה: ספרו לנו על אתגרים, ניסים, מאמצים, כוחות, הצלחות והפתעות בדרך. בן כמה הילד/ה שלכם היום?</label>
                         <textarea id="now_and_then" name="אז והיום"></textarea>
                     </div>
-                   
-                </div>
-               
+                </div> 
+                
                 <div class="section">
                     <div class="section-title">📸 תמונות מלוות </div>
                     <p style="font-size: 0.9em; opacity: 0.9; margin-bottom: 10px;">צרפו תמונה מתקופת הפגייה ותמונה של הילד/ה היום:</p>
@@ -555,80 +687,85 @@
                         <label for="photo_pagiya" class="file-label">
                             בחר קובץ לפגייה ⬆️
                         </label>
-                        <span id="filename_pagiya" style="font-size: 0.8em; color: #A0E4F0; margin-top: 5px; display: block; text-align: center;"></span>
+                        <span id="filename_pagiya" class="filename-display"></span>
                     </div>
-                   
+
                     <div class="form-group">
-                        <label for="photo_today">תמונה 2: הילד/ה היום</label>
+                        <label for="photo_today">תמונה 2: של הילד/ה היום</label>
                         <input type="file" id="photo_today" name="תמונה - היום" accept="image/*">
                         <label for="photo_today" class="file-label">
                             בחר קובץ להיום 📸
                         </label>
-                        <span id="filename_today" style="font-size: 0.8em; color: #A0E4F0; margin-top: 5px; display: block; text-align: center;"></span>
-                       
-                        <p class="upload-warning">
-                            ⚠️ חשוב: העלאת תמונות עלולה לקחת דקה או שתיים. אנא לחצו על "שלח" פעם אחת והמתינו בסבלנות עד לקבלת הודעת האישור הירוקה.
-                        </p>
-                        <p style="font-size: 0.8em; opacity: 0.7; margin-top: 5px;">(שימו לב: כל קובץ מוגבל ל-8MB)</p>
+                        <span id="filename_today" class="filename-display"></span>
                     </div>
-                </div>
 
-                <button type="submit" id="submit-button">שלח את הסיפור 📤</button>
+                </div> 
+
+                <button type="submit" id="submit-button">שלח את הסיפור המרגש שלי! 💖</button>
+
             </form>
         </div>
     </div>
-
+    
     <script>
         const form = document.getElementById('form');
         const messageDiv = document.getElementById('message');
         const submitButton = document.getElementById('submit-button');
-       
-        // --- פונקציות לתצוגת שם הקובץ שנבחר והפעלת כפתור השליחה ---
-       
+        
+        // --- פונקציות לתצוגת שם הקובץ שנבחר ---
+        
         function updateFileName(inputId, filenameId) {
             const input = document.getElementById(inputId);
             const filenameDisplay = document.getElementById(filenameId);
-            const label = input.nextElementSibling;
-           
+            
+            if (!input || !filenameDisplay) return;
+            
+            // מוצאים את ה-Label (שהוא הכפתור) שמקושר ל-Input
+            const label = document.querySelector(`label[for="${inputId}"]`);
+            
             input.addEventListener('change', function() {
                 if (this.files && this.files.length > 0) {
-                    // הצגת שם הקובץ הנבחר
-                    filenameDisplay.textContent = `נבחר: ${this.files[0].name}`;
-                    // שינוי טקסט הכפתור
-                    label.textContent = 'שנה קובץ 🔄';
+                    filenameDisplay.textContent = `✅ נבחר: ${this.files[0].name}`;
+                    if (label) label.textContent = 'שנה קובץ 🔄';
                 } else {
                     filenameDisplay.textContent = '';
-                    label.textContent = (inputId === 'photo_pagiya') ? 'בחר קובץ לפגייה ⬆️' : 'בחר קובץ להיום 📸';
+                    // החזרת טקסט ברירת המחדל ל-Label
+                    if (label) {
+                         if (inputId === 'photo_pagiya') {
+                             label.textContent = 'בחר קובץ לפגייה ⬆️';
+                         } else if (inputId === 'photo_today') {
+                             label.textContent = 'בחר קובץ להיום 📸';
+                         } else if (inputId === 'photo_symbol') {
+                             label.textContent = 'בחר קובץ (תמונה)';
+                         }
+                    }
                 }
             });
         }
-       
-        // הפעלת הפונקציה לשני שדות הקבצים
+        
         updateFileName('photo_pagiya', 'filename_pagiya');
         updateFileName('photo_today', 'filename_today');
         updateFileName('photo_symbol', 'filename_symbol');
 
-
-        // --- לוגיקה של שליחת טופס (שמירה על תיקון הטעינה) ---
-       
+        // --- הודעות הצלחה/כשל ---
+        
         const params = new URLSearchParams(window.location.search);
         const status = params.get('status');
 
         if (status === 'success') {
             messageDiv.className = 'message success';
             messageDiv.textContent = '✅ הטופס נשלח בהצלחה! תודה רבה על שיתוף הסיפור שלכם.';
-            setTimeout(() => window.history.replaceState(null, null, location.pathname), 500);
         } else if (status === 'error') {
             messageDiv.className = 'message error';
             messageDiv.textContent = '❌ שגיאה בשליחה. אנא נסו שנית או צרו קשר ישירות.';
         }
 
         form.addEventListener('submit', function() {
-            // משנה את הטקסט, משבית את הכפתור ומציג הודעת טעינה
             submitButton.textContent = '...מעלה קבצים, אנא המתן';
             submitButton.disabled = true;
         });
 
     </script>
+
 </body>
 </html>
