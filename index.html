@@ -11,9 +11,8 @@
         }
     </style>
     
+
     <style>
-        /* (כל סגנונות ה-CSS הקודמים נשמרו, למעט שינויים ב-input[type="file"]) */
-        
         /* איפוס בסיסי והגדרות גלובליות */
         * {
             margin: 0;
@@ -25,7 +24,7 @@
         html, body {
             width: 100%;
             min-height: 100vh;
-            background: linear-gradient(180deg, #0A3A42 0%, #0D5A68 50%, #116B78 100%);
+            background: linear-gradient(180deg, #E6D5F0 0%, #D9C5E8 50%, #CDB5E0 100%);
             background-attachment: fixed;
             font-family: 'KtavYad', sans-serif;
             color: #FFF; /* הגדרת ברירת המחדל הכללית ללבן */
@@ -46,7 +45,7 @@
         
         /* אזור הכותרת וההקדמה */
         .header {
-            background: linear-gradient(135deg, #0F5A68 0%, #084A55 100%);
+            background: linear-gradient(135deg, #C9B1E0 0%, #B597D6 100%);
             border-radius: 18px;
             padding: 25px 20px;
             text-align: right;
@@ -70,7 +69,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(77, 173, 181, 0.1) 50%, transparent 70%);
+            background: linear-gradient(45deg, transparent 30%, rgba(200, 150, 230, 0.1) 50%, transparent 70%);
             animation: shimmer 3s infinite;
             pointer-events: none;
         }
@@ -153,11 +152,11 @@
 
         /* מכל הטופס */
         .form-container {
-            background: linear-gradient(135deg, #0F5A68 0%, #074050 100%);
+            background: linear-gradient(135deg, #C9B1E0 0%, #B585D0 100%);
             border-radius: 18px;
             padding: 20px;
-            border: 2px solid #2B8C96;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 2px 0 rgba(77, 173, 181, 0.1);
+            border: 2px solid #D4B5E8;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 2px 0 rgba(200, 150, 230, 0.1);
             animation: slideInUp 0.7s ease-out 0.1s both;
         }
 
@@ -209,10 +208,10 @@
         textarea {
             width: 100%;
             padding: 12px;
-            border: 2px solid #2B8C96;
+            border: 2px solid #D4B5E8;
             border-radius: 10px;
-            background: rgba(232, 244, 246, 0.9);
-            color: #0A3A42; 
+            background: rgba(240, 230, 250, 0.9);
+            color: #6B3D9B; 
             font-family: 'KtavYad', sans-serif;
             font-size: 0.9em;
             -webkit-appearance: none;
@@ -241,16 +240,16 @@
             font-size: 0.9em;
             cursor: pointer;
             
-            /* סגנון כפתורי - צבע טורקיז עדין */
-            background: #4DADB5;
-            color: #0A3A42; 
+            /* סגנון כפתורי - צבע סגלגל בהיר */
+            background: #D4B5E8;
+            color: #6B3D9B; 
             transition: background 0.2s, box-shadow 0.2s;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             margin-top: 5px; /* מרווח קטן מהכותרת מעליו */
         }
         
         .file-label:hover {
-            background: #5dc2cb;
+            background: #E0C5F0;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
         
@@ -266,9 +265,9 @@
         input:focus,
         textarea:focus {
             outline: none;
-            border-color: #4DADB5;
+            border-color: #D4B5E8;
             background: white;
-            box-shadow: 0 0 0 3px rgba(77, 173, 181, 0.3);
+            box-shadow: 0 0 0 3px rgba(200, 150, 230, 0.3);
         }
 
         textarea {
@@ -283,7 +282,7 @@
             gap: 10px;
             background: rgba(255, 255, 255, 0.08); 
             padding: 15px;
-            border: 1px solid #2B8C96;
+            border: 1px solid #D4B5E8;
             border-radius: 10px;
         }
 
@@ -297,7 +296,7 @@
         input[type="radio"] {
             width: 19px;
             height: 19px;
-            accent-color: #4DADB5;
+            accent-color: #D4B5E8;
             cursor: pointer;
         }
         
@@ -312,27 +311,27 @@
         button[type="submit"] {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #A0E4F0 0%, #4DADB5 100%);
-            color: #0A3A42;
+            background: linear-gradient(135deg, #E0C5F0 0%, #D4B5E8 100%);
+            color: #6B3D9B;
             border: none;
             border-radius: 10px;
             font-size: 1.0em;
             font-weight: 800;
             font-family: 'KtavYad', sans-serif;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(77, 173, 181, 0.4);
+            box-shadow: 0 8px 20px rgba(200, 150, 230, 0.4);
             transition: all 0.3s;
             margin-top: 15px;
         }
 
         button[type="submit"]:active:not(:disabled) {
             transform: scale(0.98);
-            box-shadow: 0 3px 10px rgba(77, 173, 181, 0.6);
+            box-shadow: 0 3px 10px rgba(200, 150, 230, 0.6);
         }
         
         /* סגנון כפתור מושבת (בזמן טעינה) */
         button[type="submit"]:disabled {
-            background: #4DADB5;
+            background: #D4B5E8;
             opacity: 0.7;
             cursor: not-allowed;
         }
@@ -484,7 +483,7 @@
                         <label for="photo_symbol" class="file-label">
                             בחר קובץ (תמונה)
                         </label>
-                        <span id="filename_symbol" style="font-size: 0.8em; color: #A0E4F0; margin-top: 5px; display: block; text-align: center;"></span>
+                        <span id="filename_symbol" style="font-size: 0.8em; color: #D4B5E8; margin-top: 5px; display: block; text-align: center;"></span>
                     </div>
                     <div class="form-group">
                         <label for="song_why">למה בחרתם  בתמונה הזו?</label>
@@ -560,7 +559,7 @@
                         <label for="photo_pagiya" class="file-label">
                             בחר קובץ לפגייה ⬆️
                         </label>
-                        <span id="filename_pagiya" style="font-size: 0.8em; color: #A0E4F0; margin-top: 5px; display: block; text-align: center;"></span>
+                        <span id="filename_pagiya" style="font-size: 0.8em; color: #D4B5E8; margin-top: 5px; display: block; text-align: center;"></span>
                     </div>
                     
                     <div class="form-group">
@@ -569,7 +568,7 @@
                         <label for="photo_today" class="file-label">
                             בחר קובץ להיום 📸
                         </label>
-                        <span id="filename_today" style="font-size: 0.8em; color: #A0E4F0; margin-top: 5px; display: block; text-align: center;"></span>
+                        <span id="filename_today" style="font-size: 0.8em; color: #D4B5E8; margin-top: 5px; display: block; text-align: center;"></span>
                         
                         <p class="upload-warning">
                             ⚠️ חשוב: העלאת תמונות עלולה לקחת דקה או שתיים. אנא לחצו על "שלח" פעם אחת והמתינו בסבלנות עד לקבלת הודעת האישור הירוקה.
@@ -617,23 +616,4 @@
         // --- לוגיקה של שליחת טופס (שמירה על תיקון הטעינה) ---
         
         const params = new URLSearchParams(window.location.search);
-        const status = params.get('status');
-
-        if (status === 'success') {
-            messageDiv.className = 'message success';
-            messageDiv.textContent = '✅ הטופס נשלח בהצלחה! תודה רבה על שיתוף הסיפור שלכם.';
-            setTimeout(() => window.history.replaceState(null, null, location.pathname), 500);
-        } else if (status === 'error') {
-            messageDiv.className = 'message error';
-            messageDiv.textContent = '❌ שגיאה בשליחה. אנא נסו שנית או צרו קשר ישירות.';
-        }
-
-        form.addEventListener('submit', function() {
-            // משנה את הטקסט, משבית את הכפתור ומציג הודעת טעינה
-            submitButton.textContent = '...מעלה קבצים, אנא המתן';
-            submitButton.disabled = true;
-        });
-
-    </script>
-</body>
-</html>
+        const
