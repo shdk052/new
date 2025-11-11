@@ -648,14 +648,52 @@
                         </label>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="photo_today">תמונה 2: הילד/ה היום</label>
-                        <input type="file" id="photo_today" name="תמונה - היום" accept="image/*">
-                        <label for="photo_today" class="file-label">
-                            בחר קובץ להיום 📸
-                        </label>
-                        
-                        <p class="upload-warning">
-                            ⚠️ חשוב: העלאת תמונות עלולה לקחת דקה או שתיים. אנא לחצו על "שלח" פעם אחת והמתינו בסבלנות עד לקבלת הודעת האישור.
-                        </p>
-                        <p style="font-size: 0.8em; opacity: 0.7; margin-top: 5px;">(שימו לב: כל קובץ מוגבל ל-8MB)</p>
+    <script>
+        const form = document.getElementById('form');
+        const messageDiv = document.getElementById('message');
+        const submitButton = document.getElementById('submit-button');
+        
+        // --- פונקציות לתצוגת שם הקובץ שנבחר ---
+        
+        function updateFileName(inputId, filenameId) {
+            const input = document.getElementById(inputId);
+            const filenameDisplay = document.getElementById(filenameId);
+            
+            if (!input || !filenameDisplay) return;
+            
+            const label = input.parentElement.querySelector('.file-label');
+            
+            input.addEventListener('change', function() {
+                if (this.files && this.files.length > 0) {
+                    filenameDisplay.textContent = `✅ נבחר: ${this.files[0].name}`;
+                    if (label) label.textContent = 'שנה קובץ 🔄';
+                } else {
+                    filenameDisplay.textContent = '';
+                    if (label) label.textContent = (inputId === 'photo_pagiya') ? 'בחר קובץ לפגייה ⬆️' : (inputId === 'photo_today') ? 'בחר קובץ להיום 📸' : 'בחר קובץ (תמונה)';
+                }
+            });
+        }
+        
+        updateFileName('photo_pagiya', 'filename_pagiya');
+        updateFileName('photo_today', 'filename_today');
+        updateFileName('photo_symbol', 'filename_symbol');
+
+        // --- הודעות הצלחה/כשל ---
+        
+        const params = new URLSearchParams(window.location.search);
+        const status = params.get('status');
+
+        if (status === 'success') {
+            messageDiv.className = 'message success';
+            messageDiv.textContent = '✅ הטופס נשלח בהצלחה! תודה רבה על שיתוף הסיפור שלכם.';
+        } else if (status === 'error') {
+            messageDiv.className = 'message error';
+            messageDiv.textContent = '❌ שגיאה בשליחה. אנא נסו שנית או צרו קשר ישירות.';
+        }
+
+        form.addEventListener('submit', function() {
+            submitButton.textContent = '...מעלה קבצים, אנא המתן';
+            submitButton.disabled = true;
+        });
+
+    </script>
