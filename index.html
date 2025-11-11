@@ -16,7 +16,7 @@
         }
 
         /* ------------------------------------- */
-        /* ✅ סגנון מסך הטעינה (מותאם צבע) */
+        /* ✅ סגנון מסך הטעינה (סגול/ורוד) */
         /* ------------------------------------- */
         .loading-screen {
             position: fixed;
@@ -24,7 +24,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #116B78 0%, #0D5A68 100%); /* כחול/טורקיז */
+            background: linear-gradient(135deg, #C9B1E0 0%, #B597D6 100%); /* סגול/ורוד */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -83,13 +83,13 @@
         }
 
         /* ------------------------------------- */
-        /* ✅ סגנון גוף הדף ו-container (מעודכן) */
+        /* ✅ סגנון גוף הדף ו-container (סגול/ורוד) */
         /* ------------------------------------- */
         html, body {
             width: 100%;
             min-height: 100vh;
-            /* רקע כחול/טורקיז מהקוד השני */
-            background: linear-gradient(180deg, #0A3A42 0%, #0D5A68 50%, #116B78 100%);
+            /* רקע סגול/ורוד מהקוד הראשון */
+            background: linear-gradient(180deg, #D4C3E0 0%, #C4A8D8 50%, #CDB5E0 100%);
             background-attachment: fixed;
             font-family: 'Varela Round', sans-serif;
             color: #FFF; 
@@ -109,11 +109,11 @@
         }
         
         /* ------------------------------------- */
-        /* ✅ סגנון Header (מעודכן צבע) */
+        /* ✅ סגנון Header (סגול/ורוד) */
         /* ------------------------------------- */
         .header {
-            /* רקע כחול/טורקיז מהקוד השני */
-            background: linear-gradient(135deg, #0F5A68 0%, #084A55 100%);
+            /* רקע סגול/ורוד מהקוד הראשון */
+            background: linear-gradient(135deg, #C9B1E0 0%, #B597D6 100%);
             border-radius: 18px;
             padding: 25px 20px;
             text-align: right;
@@ -129,7 +129,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* אפקט הברק בכותרת (מעודכן צבע) */
+        /* אפקט הברק בכותרת (סגול/ורוד) */
         .header::before {
             content: '';
             position: absolute;
@@ -137,8 +137,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            /* אפקט ברק בטורקיז בהיר */
-            background: linear-gradient(45deg, transparent 30%, rgba(77, 173, 181, 0.1) 50%, transparent 70%);
+            /* אפקט ברק בסגול/ורוד בהיר */
+            background: linear-gradient(45deg, transparent 30%, rgba(200, 150, 230, 0.2) 50%, transparent 70%);
             animation: shimmer 3s infinite;
             pointer-events: none;
         }
@@ -164,15 +164,21 @@
         }
         /* *** סוף סגנון הלוגו *** */
 
-        /* כותרת ראשית - הוסר אפקט ה-glow אבל נשאר העיצוב הכללי */
+        /* כותרת ראשית + אפקט Glow */
         .header h1 {
-            font-size: 2.4em; /* החזרתי ל-2.4em מהקוד הראשון לטובת הדגשה */
+            font-size: 2.4em;
             font-weight: 900;
             margin-bottom: 25px; 
             color: #FFF; 
             text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             letter-spacing: 1px;
             text-align: center;
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); }
+            50% { text-shadow: 0 4px 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4); }
         }
         
         /* פסקאות בתוך ה-header */
@@ -241,16 +247,15 @@
         }
 
         /* ------------------------------------- */
-        /* ✅ סגנון טופס (מעודכן צבע) */
+        /* ✅ סגנון טופס (סגול/ורוד) */
         /* ------------------------------------- */
         .form-container {
-            /* רקע כחול/טורקיז מהקוד השני */
-            background: linear-gradient(135deg, #0F5A68 0%, #074050 100%);
+            /* רקע סגול/ורוד מהקוד הראשון */
+            background: linear-gradient(135deg, #C9B1E0 0%, #B585D0 100%);
             border-radius: 18px;
             padding: 20px;
-            /* גבול בטורקיז בהיר יותר */
-            border: 2px solid #2B8C96;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 2px 0 rgba(77, 173, 181, 0.1);
+            border: 2px solid #D4B5E8;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 2px 0 rgba(200, 150, 230, 0.1);
             animation: slideInUp 0.7s ease-out 0.1s both;
         }
 
@@ -302,13 +307,13 @@
         textarea {
             width: 100%;
             padding: 12px;
-            /* גבול בטורקיז בהיר */
-            border: 2px solid #2B8C96;
+            /* גבול סגול/ורוד */
+            border: 2px solid #D4B5E8;
             border-radius: 10px;
             /* רקע בהיר לכתיבה */
-            background: rgba(232, 244, 246, 0.9);
-            /* צבע טקסט כחול כהה */
-            color: #0A3A42; 
+            background: rgba(240, 230, 250, 0.9);
+            /* צבע טקסט סגול כהה */
+            color: #6B3D9B; 
             font-family: 'Varela Round', sans-serif;
             font-size: 0.9em;
             -webkit-appearance: none;
@@ -326,7 +331,7 @@
             overflow: hidden;
         }
         
-        /* עיצוב ה Label שתשמש ככפתור (מעודכן צבע) */
+        /* עיצוב ה Label שתשמש ככפתור (סגול/ורוד) */
         .file-label {
             display: block;
             text-align: center;
@@ -335,16 +340,16 @@
             font-weight: 700;
             font-size: 0.9em;
             cursor: pointer;
-            /* סגנון כפתורי - צבע טורקיז עדין */
-            background: #4DADB5;
-            color: #0A3A42; 
+            /* סגנון כפתורי - צבע סגול בהיר */
+            background: #D4B5E8;
+            color: #6B3D9B; 
             transition: background 0.2s, box-shadow 0.2s;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             margin-top: 5px;
         }
         
         .file-label:hover {
-            background: #5dc5ce;
+            background: #E0C5F0;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
         
@@ -360,19 +365,18 @@
         /* הודעת שם קובץ שנבחר */
         .filename-display {
             font-size: 0.85em;
-            color: #A0FFA0; 
+            color: #FFECB3; /* צהוב בהיר */
             margin-top: 5px;
             display: block;
         }
 
-
         input:focus,
         textarea:focus {
             outline: none;
-            border-color: #2B8C96;
+            border-color: #D4B5E8;
             background: white;
-            /* אפקט פוקוס בטורקיז עדין */
-            box-shadow: 0 0 0 3px rgba(77, 173, 181, 0.3);
+            /* אפקט פוקוס סגול/ורוד עדין */
+            box-shadow: 0 0 0 3px rgba(200, 150, 230, 0.3);
         }
 
         textarea {
@@ -388,8 +392,8 @@
             /* רקע עדין */
             background: rgba(255, 255, 255, 0.08); 
             padding: 15px;
-            /* גבול בטורקיז בהיר */
-            border: 1px solid #2B8C96;
+            /* גבול סגול/ורוד */
+            border: 1px solid #D4B5E8;
             border-radius: 10px;
         }
 
@@ -403,8 +407,8 @@
         input[type="radio"] {
             width: 19px;
             height: 19px;
-            /* צבע הדגשה טורקיז בהיר */
-            accent-color: #2B8C96;
+            /* צבע הדגשה סגול/ורוד */
+            accent-color: #D4B5E8;
             cursor: pointer;
         }
         
@@ -415,45 +419,44 @@
         }
 
 
-        /* Submit Button (מעודכן צבע) */
+        /* Submit Button (סגול/ורוד) */
         button[type="submit"] {
             width: 100%;
             padding: 15px;
-            /* רקע כפתור טורקיז בהיר לטקסט כהה */
-            background: linear-gradient(135deg, #4DADB5 0%, #2B8C96 100%);
-            color: #0A3A42;
+            /* רקע כפתור סגול/ורוד בהיר לטקסט כהה */
+            background: linear-gradient(135deg, #E0C5F0 0%, #D4B5E8 100%);
+            color: #6B3D9B;
             border: none;
             border-radius: 10px;
             font-size: 1.0em;
             font-weight: 800;
             font-family: 'Varela Round', sans-serif;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 20px rgba(200, 150, 230, 0.4);
             transition: all 0.3s;
             margin-top: 15px;
         }
-
+        
         button[type="submit"]:hover:not(:disabled) {
-            background: linear-gradient(135deg, #5dc5ce 0%, #3a97a1 100%);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 25px rgba(200, 150, 230, 0.6);
         }
 
         button[type="submit"]:active:not(:disabled) {
             transform: scale(0.98);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 3px 10px rgba(200, 150, 230, 0.6);
         }
         
         /* סגנון כפתור מושבת (בזמן טעינה) */
         button[type="submit"]:disabled {
-            background: #2B8C96;
+            background: #D4B5E8;
             opacity: 0.7;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
 
-        /* Message (מעודכן צבע) */
+        /* Message */
         .message {
             padding: 12px;
             border-radius: 9px;
@@ -472,12 +475,11 @@
         }
 
         .message.success {
-            /* הצלחה בירוק/טורקיז עדין */
             background: rgba(0, 168, 120, 0.15);
             border-color: #00A878;
             color: #B0E8D4; 
         }
-        
+
         .message.error {
             background: rgba(255, 0, 0, 0.15);
             border-color: #FF4444;
@@ -701,7 +703,7 @@
 
                 </div> 
 
-                <button type="submit" id="submit-button">שלח את הסיפור המרגש שלי! 💖</button>
+                <button type="submit" id="submit-button">שלח את הסיפור המרגש שלי!</button>
 
             </form>
         </div>
