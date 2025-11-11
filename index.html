@@ -252,6 +252,31 @@
             color: #FFF; 
         }
 
+        .whatsapp-btn {
+            display: inline-block;
+            background: #25D366;
+            color: #FFF;
+            padding: 10px 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85em;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1ead50;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-btn:active {
+            transform: translateY(0);
+        }
+
         /* מכל הטופס */
         .form-container {
             background: linear-gradient(135deg, #C9B1E0 0%, #B585D0 100%);
@@ -529,10 +554,14 @@
             
             <div class="contact-info">
                 <p>תודה על שיתוף הפעולה!</p>
-                <p>
-                    📞 <strong><a href="https://wa.me/972525238282" target="_blank" style="color: inherit; text-decoration: none;">דיקלה 0525238282</a></strong> |
-                    📞 <strong><a href="https://wa.me/972528119587" target="_blank" style="color: inherit; text-decoration: none;">יגאל 0528119587</a></strong>
-                </p>
+                <div style="display: flex; justify-content: center; gap: 15px; margin: 15px 0; flex-wrap: wrap;">
+                    <a href="https://wa.me/972525238282" target="_blank" class="whatsapp-btn">
+                        💬 דיקלה 0525238282
+                    </a>
+                    <a href="https://wa.me/972528119587" target="_blank" class="whatsapp-btn">
+                        💬 יגאל 0528119587
+                    </a>
+                </div>
                 <p style="font-size: 0.75em; color: #FFF; opacity: 0.7;">( מנהלי קבוצות אמהות ואבות לפגים - עמותת לה"ב )</p>
             </div>
 
