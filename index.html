@@ -15,19 +15,7 @@
             box-sizing: border-box;
         }
 
-        /* גוף הדף - רקע וגופן */
-        html, body {
-            width: 100%;
-            min-height: 100vh;
-            background: linear-gradient(180deg, #D4C3E0 0%, #C4A8D8 50%, #CDB5E0 100%);
-            background-attachment: fixed;
-            font-family: 'Varela Round', sans-serif;
-            color: #FFF;
-            direction: rtl;
-            overflow-x: hidden;
-        }
-
-        /* מסך הטעינה */
+        /* מסך הטעינה - רק ליופי */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -67,65 +55,41 @@
         }
 
         .loading-logo {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 30px;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
             background: white;
             border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 80px;
+            font-size: 60px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             animation: bounce 2s ease-in-out infinite;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-15px); }
         }
 
         .loading-title {
-            font-size: 2em;
+            font-size: 1.8em;
             font-weight: 900;
             color: #FFF;
             text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            margin-bottom: 30px;
-            letter-spacing: 1px;
         }
 
-        .loading-bar {
-            width: 200px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .loading-progress {
-            height: 100%;
-            background: linear-gradient(90deg, #E0C5F0, #FFF, #E0C5F0);
-            background-size: 200% 100%;
-            border-radius: 10px;
-            animation: progress 2s ease-in-out;
-        }
-
-        @keyframes progress {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
-
-        .loading-text {
-            margin-top: 20px;
-            font-size: 0.95em;
-            color: rgba(255, 255, 255, 0.9);
-            animation: fadeInOut 2s ease-in-out;
-        }
-
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
+        /* גוף הדף - רקע וגופן */
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #D4C3E0 0%, #C4A8D8 50%, #CDB5E0 100%);
+            background-attachment: fixed;
+            font-family: 'Varela Round', sans-serif;
+            color: #FFF;
+            direction: rtl;
+            overflow-x: hidden;
         }
 
         /* מכל שמרכז את התוכן ודואג לגלילה אנכית */
@@ -165,7 +129,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(200, 150, 230, 0.1) 50%, transparent 70%);
+            background: linear-gradient(45deg, transparent 30%, rgba(200, 150, 230, 0.2) 50%, transparent 70%);
             animation: shimmer 3s infinite;
             pointer-events: none;
         }
@@ -191,7 +155,7 @@
         }
         /* *** סוף סגנון הלוגו *** */
 
-        /* כותרת ראשית (שוּנָה ללבן) */
+        /* כותרת ראשית */
         .header h1 {
             font-size: 2.4em;
             font-weight: 900;
@@ -208,14 +172,14 @@
             50% { text-shadow: 0 4px 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4); }
         }
         
-        /* פסקאות בתוך ה-header (שוּנָה ללבן מובהק) */
+        /* פסקאות בתוך ה-header */
         .header p {
             font-size: 0.95em;
             color: #FFF; 
             margin-bottom: 12px;
         }
         
-        /* עיצוב מטרות - צבע לבן */
+        /* עיצוב מטרות */
         .header .goal-title {
             font-size: 1.05em;
             font-weight: 800;
@@ -234,7 +198,7 @@
             font-weight: normal; 
         }
         
-        /* אייקונים (שוּנָה ללבן) */
+        /* אייקונים */
         .header .list-item span.icon {
             color: #FFF; 
             font-size: 1.2em;
@@ -263,18 +227,13 @@
             font-size: 0.85em;
             transition: all 0.3s;
             box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-            border: none;
-            cursor: pointer;
+            margin: 5px;
         }
 
         .whatsapp-btn:hover {
             background: #1ead50;
             transform: translateY(-2px);
             box-shadow: 0 6px 16px rgba(37, 211, 102, 0.6);
-        }
-
-        .whatsapp-btn:active {
-            transform: translateY(0);
         }
 
         /* מכל הטופס */
@@ -309,7 +268,7 @@
             padding-bottom: 0;
         }
 
-        /* כותרות מקטעי הטופס (שוּנָה ללבן) */
+        /* כותרות מקטעי הטופס */
         .section-title {
             font-size: 1.1em;
             font-weight: 800;
@@ -346,9 +305,8 @@
             transition: all 0.3s;
         }
         
-        /* הסתרת כפתור ברירת המחדל של הדפדפן - **שינוי מרכזי** */
+        /* הסתרת כפתור ברירת המחדל של הדפדפן */
         input[type="file"] {
-            /* הופך את השדה לשקוף ובלתי נראה */
             opacity: 0;
             position: absolute;
             z-index: -1;
@@ -357,45 +315,32 @@
             overflow: hidden;
         }
         
-        /* עיצוב ה Label שתשמש ככפתור - **שינוי מרכזי** */
+        /* עיצוב ה Label שתשמש ככפתור */
         .file-label {
-            display: inline-block;
+            display: block;
             text-align: center;
             padding: 12px 15px;
             border-radius: 10px;
             font-weight: 700;
             font-size: 0.9em;
             cursor: pointer;
-            width: 100%;
-            
-            /* סגנון כפתורי - צבע סגלגל בהיר */
             background: #D4B5E8;
             color: #6B3D9B; 
             transition: background 0.2s, box-shadow 0.2s;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             margin-top: 5px;
-            margin-bottom: 8px;
-            box-sizing: border-box;
         }
         
         .file-label:hover {
             background: #E0C5F0;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
-        .filename-display {
-            font-size: 0.8em;
-            color: #D4B5E8;
-            margin-top: 5px;
-            display: block;
-            text-align: center;
-            min-height: 20px;
-        }
         
         /* סגנון נוסף להודעת העלאה */
         .upload-warning {
             font-size: 0.8em; 
             opacity: 0.9; 
-            color: #FFC107; /* צהוב אזהרה */
+            color: #FFC107;
             margin-top: 10px;
             font-weight: 700;
         }
@@ -519,15 +464,11 @@
     </style>
 </head>
 <body>
-    <!-- מסך הטעינה -->
+    <!-- מסך הטעינה - רק ליופי בלבד -->
     <div class="loading-screen">
         <div class="loading-content">
             <div class="loading-logo">👶</div>
             <div class="loading-title">ספר גדול על פגים קטנים</div>
-            <div class="loading-bar">
-                <div class="loading-progress"></div>
-            </div>
-            <div class="loading-text">טוען...</div>
         </div>
     </div>
 
@@ -538,8 +479,6 @@
             </div>
             
             <h1>ספר גדול על פגים קטנים</h1>
-            
-
             
             <p>הורים לפגים?! </p>
             <p>איך חוויתם את תקופת הפגייה? </p>
@@ -565,15 +504,11 @@
             
             <div class="contact-info">
                 <p>תודה על שיתוף הפעולה!</p>
-                <div style="display: flex; justify-content: center; gap: 15px; margin: 15px 0; flex-wrap: wrap;">
-                    <a href="https://wa.me/972525238282" target="_blank" class="whatsapp-btn">
-                        💬 דיקלה 0525238282
-                    </a>
-                    <a href="https://wa.me/972528119587" target="_blank" class="whatsapp-btn">
-                        💬 יגאל 0528119587
-                    </a>
+                <div>
+                    <a href="https://wa.me/972525238282" target="_blank" class="whatsapp-btn">💬 דיקלה 0525238282</a>
+                    <a href="https://wa.me/972528119587" target="_blank" class="whatsapp-btn">💬 יגאל 0528119587</a>
                 </div>
-                <p style="font-size: 0.75em; color: #FFF; opacity: 0.7;">( מנהלי קבוצות אמהות ואבות לפגים - עמותת לה"ב )</p>
+                <p style="font-size: 0.75em; color: #FFF; opacity: 0.7; margin-top: 15px;">( מנהלי קבוצות אמהות ואבות לפגים - עמותת לה"ב )</p>
             </div>
 
         </div>
@@ -595,12 +530,12 @@
                             <label for="r1">בשמי המלא ללא כתובת אימייל וטלפון </label>
                         </div>
                         <div class="radio-item">
-                            <input type="radio" id="r1" name="אופן שיתוף הסיפור" value="בשם מלא כולל כתובת" required>
-                            <label for="r1">בשמי המלא כולל כתובת אימייל וטלפון (לטובת משפחות שיקראו את הספר ויצרו קשר ישיר)</label>
+                            <input type="radio" id="r2" name="אופן שיתוף הסיפור" value="בשם מלא כולל כתובת" required>
+                            <label for="r2">בשמי המלא כולל כתובת אימייל וטלפון (לטובת משפחות שיקראו את הספר ויצרו קשר ישיר)</label>
                         </div>
                         <div class="radio-item">
-                            <input type="radio" id="r2" name="אופן שיתוף הסיפור" value="אנונימי" required>
-                            <label for="r2">אנונימי </label>
+                            <input type="radio" id="r3" name="אופן שיתוף הסיפור" value="אנונימי" required>
+                            <label for="r3">אנונימי </label>
                         </div>
                     </div>
                 </div>
@@ -612,11 +547,11 @@
                         <input type="text" id="name" name="שם מלא" required>
                     </div>
                     <div class="form-group">
-                        <label for="contact">טלפון:</label>
+                        <label for="phone">טלפון:</label>
                         <input type="text" id="phone" name="טלפון" required>
                     </div>
                     <div class="form-group">
-                        <label for="contact">אימייל:</label>
+                        <label for="email">אימייל:</label>
                         <input type="text" id="email" name="אימייל" required>
                     </div>
                 </div>
@@ -637,11 +572,10 @@
                         <label for="photo_symbol" class="file-label">
                             בחר קובץ (תמונה)
                         </label>
-                        <span id="filename_symbol" style="font-size: 0.8em; color: #D4B5E8; margin-top: 5px; display: block; text-align: center;"></span>
                     </div>
                     <div class="form-group">
-                        <label for="song_why">למה בחרתם  בתמונה הזו?</label>
-                        <textarea id="song_why" name="סיבת בחירת השיר" required></textarea>
+                        <label for="photo_symbol_why">למה בחרתם בתמונה הזו?</label>
+                        <textarea id="photo_symbol_why" name="סיבת בחירת התמונה הסימבולית" required></textarea>
                     </div>
                 </div>
 
@@ -700,7 +634,6 @@
                         <label for="now_and_then">אז והיום - תארו את הדרך שעברתם בשנים האחרונות עם הילד/ה: ספרו לנו על אתגרים, ניסים, מאמצים, כוחות, הצלחות והפתעות בדרך. בן כמה הילד/ה שלכם היום?</label>
                         <textarea id="now_and_then" name="אז והיום"></textarea>
                     </div>
-                    
                 </div> 
                 
                 <div class="section">
@@ -723,10 +656,6 @@
                         </label>
                         
                         <p class="upload-warning">
-                            ⚠️ חשוב: העלאת תמונות עלולה לקחת דקה או שתיים. אנא לחצו על "שלח" פעם אחת והמתינו בסבלנות עד לקבלת הודעת האישור הירוקה.
+                            ⚠️ חשוב: העלאת תמונות עלולה לקחת דקה או שתיים. אנא לחצו על "שלח" פעם אחת והמתינו בסבלנות עד לקבלת הודעת האישור.
                         </p>
                         <p style="font-size: 0.8em; opacity: 0.7; margin-top: 5px;">(שימו לב: כל קובץ מוגבל ל-8MB)</p>
-                    </div>
-                </div>
-
-                <button type="submit" id="submit-button">שלח את הסיפור 📤</button>
